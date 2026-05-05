@@ -30,22 +30,22 @@ export const metadata: Metadata = {
   creator: "Dar El Meamar",
   publisher: "Dar El Meamar",
   alternates: {
-    canonical: 'https://dar-el-meamar.com',
+    canonical: 'https://mhghazy.github.io/dar-elmeamar-next-v2',
     languages: {
-      'en-US': 'https://dar-el-meamar.com/en',
-      'ar-EG': 'https://dar-el-meamar.com/ar',
+      'en-US': 'https://mhghazy.github.io/dar-elmeamar-next-v2/en',
+      'ar-EG': 'https://mhghazy.github.io/dar-elmeamar-next-v2/ar',
     },
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://dar-el-meamar.com",
+    url: "https://mhghazy.github.io/dar-elmeamar-next-v2",
     siteName: "Dar El Meamar",
     title: "Dar El Meamar | Global Luxury Architectural Excellence",
     description: "Premier global construction and architectural design firm specializing in luxury projects.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://mhghazy.github.io/dar-elmeamar-next-v2/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Dar El Meamar Portfolio",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dar El Meamar | Luxury Architectural Design & Construction",
     description: "Premier global construction and architectural design firm specializing in luxury projects.",
-    images: ["/og-image.jpg"],
+    images: ["https://mhghazy.github.io/dar-elmeamar-next-v2/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -91,8 +91,8 @@ export default function RootLayout({
                   "@context": "https://schema.org",
                   "@type": "Organization",
                   "name": "Dar El Meamar",
-                  "url": "https://dar-el-meamar.com",
-                  "logo": "https://dar-el-meamar.com/logo.png",
+                  "url": "https://mhghazy.github.io/dar-elmeamar-next-v2",
+                  "logo": "https://mhghazy.github.io/dar-elmeamar-next-v2/logo.png",
                   "description": "Premier construction and architectural design firm specializing in luxury projects.",
                   "contactPoint": {
                     "@type": "ContactPoint",

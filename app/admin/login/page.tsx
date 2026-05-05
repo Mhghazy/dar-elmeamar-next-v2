@@ -127,6 +127,11 @@ export default function LoginPage() {
           </button>
         </form>
 
+        <div className="mt-8 p-4 bg-teal-500/5 border border-teal-500/10 rounded-xl text-center">
+          <p className="text-[10px] text-teal-500 uppercase font-bold tracking-widest mb-1">Demo Credentials</p>
+          <p className="text-xs text-gray-400 font-medium italic">User: admin | Pass: admin123</p>
+        </div>
+
         <div className="mt-12 text-center">
           <p className="text-gray-600 text-xs tracking-widest uppercase">
             &copy; 2026 Dar Al-Maamar — Authorized Access Only

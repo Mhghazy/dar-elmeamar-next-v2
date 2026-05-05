@@ -108,11 +108,9 @@ export default function AdminDashboard() {
     if (savedTheme) setTheme(savedTheme);
 
     async function init() {
-      if (isUiMode) {
-        setUser({ id: '1', email: 'admin@demo.com' });
-      } else {
-        await checkUser();
-      }
+      // Force Demo Mode for GitHub Pages static export
+      setUser({ id: '1', email: 'admin@demo.com' });
+      
       const [projData, userData, logData] = await Promise.all([
         getProjects(),
         getAdminUsers(),
@@ -145,9 +143,8 @@ export default function AdminDashboard() {
   }, [theme]);
 
   async function checkUser() {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) router.push('/admin/login');
-    else setUser(user);
+    // Disabled for static export
+    return;
   }
 
   async function handleAutoTranslate() {
@@ -483,7 +480,25 @@ export default function AdminDashboard() {
         </div>
       </nav>
 
-      <main className="relative z-10 max-w-7xl mx-auto py-20 px-6">
+      <main className="relative z-10 max-w-7xl mx-auto py-10 px-6">
+        {/* Demo Mode Banner */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-10 p-6 bg-amber-500/10 border border-amber-500/20 rounded-[32px] flex items-center justify-between"
+        >
+          <div className="flex items-center gap-4 text-amber-600 dark:text-amber-400">
+            <Shield size={24} />
+            <div>
+              <p className="font-bold text-sm uppercase tracking-widest">⚠️ Demo Mode Active</p>
+              <p className="text-xs font-medium opacity-80">Authentication and persistent storage require Vercel deployment. Changes made here are saved locally to your browser.</p>
+            </div>
+          </div>
+          <div className="hidden md:block text-[10px] uppercase font-bold text-amber-600/50 tracking-widest px-4 py-2 border border-amber-500/20 rounded-full">
+            Static Export Mode
+          </div>
+        </motion.div>
+
         {/* Stats Bar */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-20">
           {[

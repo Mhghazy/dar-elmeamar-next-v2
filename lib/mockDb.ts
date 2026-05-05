@@ -47,7 +47,7 @@ export const MOCK_PROJECTS_DB = [
         title: 'Project Visuals',
         images: [
           { src: 'post-modern-villa.jpg', alt: 'Post - Modern Villa Main View' },
-          { src: 'post-modern-villa-left .jpg', alt: 'Contemporary Facade Perspective' },
+          { src: 'post-modern-villa-left.jpg', alt: 'Contemporary Facade Perspective' },
           { src: 'post-modern-villa-night.jpg', alt: 'Post - Modern Villa Night View' },
         ]
       },
@@ -86,12 +86,12 @@ export const MOCK_PROJECTS_DB = [
     description: 'This project is characterized by clean lines, geometric forms and minimalist detailing. Features a light, neutral color palette contrasted with stone cladding to maintain a clean, uncluttered aesthetic look.',
     location: 'New Cairo, Egypt',
     year: '2022',
-    hero_image: 'V 395 Shot 1.jpg',
+    hero_image: 'V-395-Shot-1.jpg',
     sections: [
       {
         title: 'Project Visuals',
         images: [
-          { src: 'V 395 Shot 1.jpg', alt: 'Contemporary Villa Main View' },
+          { src: 'V-395-Shot-1.jpg', alt: 'Contemporary Villa Main View' },
         ]
       }
     ],
