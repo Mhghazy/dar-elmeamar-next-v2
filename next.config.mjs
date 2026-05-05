@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  // basePath: '/dar-el-meamar-next', // DISABLING FOR LOCAL DEBUGGING
+  basePath: '/dar-elmeamar-next-v2',
   images: {
     unoptimized: true,
   },
