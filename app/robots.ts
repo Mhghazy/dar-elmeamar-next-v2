@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin/', '/api/'],
     },
-    sitemap: 'https://dar-el-meamar.com/sitemap.xml',
+    sitemap: 'https://darelmeamar.com/sitemap.xml',
   };
 }
