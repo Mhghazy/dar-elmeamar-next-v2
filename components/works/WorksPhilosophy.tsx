@@ -64,7 +64,7 @@ const WorksPhilosophy = () => {
               <div 
                 className="w-full h-full bg-cover bg-center" 
                 style={{ 
-                  backgroundImage: `url('${assets.resolveUrl('signature-estate-main.jpg')}')`,
+                  backgroundImage: `url('${assets.resolveFullUrl('signature-estate-main.jpg')}')`,
                   backgroundColor: '#0F3D2E' 
                 }} 
               />
@@ -126,7 +126,7 @@ const WorksPhilosophy = () => {
             <div 
               className="w-full h-full bg-cover bg-center" 
               style={{ 
-                backgroundImage: `url('${assets.resolveUrl('post-modern-villa.jpg')}')`,
+                backgroundImage: `url('${assets.resolveFullUrl('post-modern-villa.jpg')}')`,
                 backgroundColor: '#1a1a1a'
               }} 
             />

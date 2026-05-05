@@ -15,7 +15,7 @@ const WorksCTA = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{ 
-          backgroundImage: `url('${assets.resolveUrl('works_hero_bg.png')}')`, // Reusing hero BG for consistency
+          backgroundImage: `url('${assets.resolveFullUrl('works_hero_bg.png')}')`, // Reusing hero BG for consistency
           backgroundColor: '#0F3D2E' 
         }}
       />

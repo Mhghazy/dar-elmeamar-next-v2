@@ -67,7 +67,7 @@ export default function ServicesPage() {
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url('${assets.resolveUrl('services-hero-collage.png')}')`,
+            backgroundImage: `url('${assets.resolveFullUrl('services-hero-collage.png')}')`,
             backgroundColor: '#1a5f5a',
           }}
           initial={{ scale: reduceMotion ? 1 : 1.05 }}
@@ -150,7 +150,7 @@ export default function ServicesPage() {
         id="services-development"
         className="relative scroll-mt-24 py-28 md:py-32 overflow-hidden"
         style={{
-          backgroundImage: `url('${assets.resolveUrl('services-dev-visual.png')}')`,
+          backgroundImage: `url('${assets.resolveFullUrl('services-dev-visual.png')}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundColor: '#0b3b33',
@@ -196,7 +196,7 @@ export default function ServicesPage() {
               <motion.div
                 className="h-[420px] rounded-xl bg-cover bg-center"
                 style={{
-                  backgroundImage: `url('${assets.resolveUrl('services-dev-visual.png')}')`,
+                  backgroundImage: `url('${assets.resolveFullUrl('services-dev-visual.png')}')`,
                   backgroundColor: '#0b3b33',
                 }}
                 whileHover={reduceMotion ? {} : { scale: 1.03 }}
@@ -256,7 +256,7 @@ export default function ServicesPage() {
             <motion.div
               className="h-80 md:h-[420px] bg-cover bg-center"
               style={{
-                backgroundImage: `url('${assets.resolveUrl('c44b99ec-9fc8-44e1-a38e-7b72eb6ddb3a.png')}')`,
+                backgroundImage: `url('${assets.resolveFullUrl('c44b99ec-9fc8-44e1-a38e-7b72eb6ddb3a.png')}')`,
                 backgroundColor: '#1a5f5a',
               }}
               whileHover={reduceMotion ? {} : { scale: 1.04 }}
@@ -315,7 +315,7 @@ export default function ServicesPage() {
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
                   style={{
-                    backgroundImage: `url('${assets.resolveUrl(img)}')`,
+                    backgroundImage: `url('${assets.resolveFullUrl(img)}')`,
                     backgroundColor: bg,
                   }}
                 />

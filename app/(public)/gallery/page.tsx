@@ -3,8 +3,12 @@ import GalleryShowcase from '@/components/gallery/GalleryShowcase';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Gallery | Dar Al-Maamar',
-  description: 'A visual exploration of our finest developments, architectural details, and luxury living spaces.',
+  title: 'Project Gallery | Global Architectural Excellence',
+  description: 'Explore the Dar El Meamar project gallery. A world-class showcase of luxury villas, residential compounds, and high-end finishing projects.',
+  keywords: [
+    'Architectural Gallery', 'Luxury Villa Portfolio', 'Real Estate', 'Residential', 'Finishing', 'Compounds',
+    'معرض المعمار', 'محفظة الفلل الفاخرة', 'عقارات', 'سكني', 'تشطيبات', 'كمبوندات'
+  ],
 };
 
 export default function GalleryPage() {

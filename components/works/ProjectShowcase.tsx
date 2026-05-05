@@ -36,7 +36,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             <div 
               className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
               style={{ 
-                backgroundImage: `url('${assets.resolveUrl(project.image)}')`,
+                backgroundImage: `url('${assets.resolveFullUrl(project.image)}')`,
                 backgroundColor: '#1a1a1a'
               }}
             />

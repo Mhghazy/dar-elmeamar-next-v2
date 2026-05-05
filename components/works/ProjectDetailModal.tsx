@@ -44,7 +44,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
               {/* Header Image */}
               <div 
                 className="w-full h-[50vh] bg-cover bg-center"
-                style={{ backgroundImage: `url('${assets.resolveUrl(project.image)}')` }}
+                style={{ backgroundImage: `url('${assets.resolveFullUrl(project.image)}')` }}
               />
 
               {/* Content */}

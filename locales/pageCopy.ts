@@ -175,6 +175,12 @@ export const extraTranslationsEn = {
     viewDetail: 'View Detail',
     inspiredBy: 'Inspired by this project?',
     startYourProject: 'Start Your Project',
+    residential: 'Residential',
+    section: 'Section',
+    projectVisuals: 'Project Visuals',
+    entrance: 'Entrance',
+    salesPlan: 'Sales Plan',
+    contactUsCta: 'Contact Us',
   },
 };
 
@@ -352,5 +358,11 @@ export const extraTranslationsAr = {
     viewDetail: 'عرض التفصيل',
     inspiredBy: 'هل ألهمك هذا المشروع؟',
     startYourProject: 'ابدأ مشروعك',
+    residential: 'سكني',
+    section: 'قسم',
+    projectVisuals: 'مرئيات المشروع',
+    entrance: 'المدخل',
+    salesPlan: 'خطة المبيعات',
+    contactUsCta: 'اتصل بنا',
   },
 };

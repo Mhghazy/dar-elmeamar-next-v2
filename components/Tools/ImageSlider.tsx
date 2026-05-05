@@ -70,7 +70,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
       <AnimatePresence initial={false} mode="wait">
         <motion.img
           key={index} // مفتاح ثابت لكل صورة
-          src={assets.resolveUrl(images[index])}
+          src={assets.resolveFullUrl(images[index])}
           alt=""
           loading={index === 0 ? 'eager' : 'lazy'}
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"

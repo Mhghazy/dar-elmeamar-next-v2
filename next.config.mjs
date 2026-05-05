@@ -1,21 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',                          // ✅ static HTML export
-  basePath: '/dar-el-meamar-next',           // ✅ matches your repo name
-  assetPrefix: '/dar-el-meamar-next/',       // ✅ CDN assets under the right path
-
+  output: 'export',
+  // basePath: '/dar-el-meamar-next', // DISABLING FOR LOCAL DEBUGGING
   images: {
-    unoptimized: true,                       // ✅ required for static export
-    formats: ['image/webp', 'image/avif'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    unoptimized: true,
   },
-
-  compress: true,
-  productionBrowserSourceMaps: false,
-
-  // ❌ Removed: redirects() — not supported in static export
-  // ❌ Removed: headers() — not supported in static export
 };
 
 export default nextConfig;

@@ -1,4 +1,4 @@
-import { resolvePublicImageUrl } from './urlResolution';
+import { resolvePublicImageUrl, resolveFullUrl } from './urlResolution';
 import { preloadImages } from '@/utils/imageUtils';
 
 /**
@@ -7,6 +7,7 @@ import { preloadImages } from '@/utils/imageUtils';
  */
 export const assets = {
   resolveUrl: resolvePublicImageUrl,
+  resolveFullUrl: resolveFullUrl,
   preloadMany: (paths: string[]) => preloadImages(paths),
 } as const;
 

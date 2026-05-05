@@ -17,8 +17,58 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Dar El-Meamar",
-  description: "Construction Company Landing Page",
+  title: {
+    default: "Dar El Meamar | Luxury Architectural Design & Construction",
+    template: "%s | Dar El Meamar"
+  },
+  description: "Dar El Meamar is a world-class construction and architectural design firm specializing in luxury residential, commercial, and high-end finishing projects. Leading the future of modern living with innovative designs.",
+  keywords: [
+    "Villa", "Residential", "Real Estate", "Finishing", "Architecture", "Compounds", "Luxury Living", "Modern Design",
+    "فيلا", "سكني", "عقارات", "تشطيب", "عمارة", "كمبوندات", "تصميم عصري", "دار المعمار"
+  ],
+  authors: [{ name: "Dar El Meamar" }],
+  creator: "Dar El Meamar",
+  publisher: "Dar El Meamar",
+  alternates: {
+    canonical: 'https://dar-el-meamar.com',
+    languages: {
+      'en-US': 'https://dar-el-meamar.com/en',
+      'ar-EG': 'https://dar-el-meamar.com/ar',
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://dar-el-meamar.com",
+    siteName: "Dar El Meamar",
+    title: "Dar El Meamar | Global Luxury Architectural Excellence",
+    description: "Premier global construction and architectural design firm specializing in luxury projects.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Dar El Meamar Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dar El Meamar | Luxury Architectural Design & Construction",
+    description: "Premier global construction and architectural design firm specializing in luxury projects.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -34,6 +84,28 @@ export default function RootLayout({
         <ThemeProvider>
           <LanguageProvider>
             <ConsoleWarningSuppress />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "Organization",
+                  "name": "Dar El Meamar",
+                  "url": "https://dar-el-meamar.com",
+                  "logo": "https://dar-el-meamar.com/logo.png",
+                  "description": "Premier construction and architectural design firm specializing in luxury projects.",
+                  "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+20-XXX-XXXX-XXX",
+                    "contactType": "customer service"
+                  },
+                  "sameAs": [
+                    "https://www.facebook.com/darelmeamar",
+                    "https://www.instagram.com/darelmeamar"
+                  ]
+                }),
+              }}
+            />
             {children}
           </LanguageProvider>
         </ThemeProvider>

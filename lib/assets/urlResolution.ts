@@ -1,37 +1,51 @@
 /**
- * Pure URL resolution for public assets (Strategy-style decomposition).
- * Single source of truth for basePath + asset folder rules.
+ * Pure URL resolution for public assets.
  */
-const ASSET_BASE_PATH = '/dar-el-meamar-next';
 
-export function isExternalImagePath(path: string): boolean {
-  return path.startsWith('http');
+export function isExternalImagePath(path: string | undefined | null): boolean {
+  if (!path) return false;
+  return path.startsWith('http') || path.startsWith('blob:') || path.startsWith('data:');
 }
 
-export function isRootedPublicPath(path: string): boolean {
-  return path.startsWith('/');
+/**
+ * Universal resolution for Next.js and standard tags.
+ * Ensures all local assets start with /assets/
+ */
+export function resolvePublicImageUrl(path: string | undefined | null): string {
+  if (!path) return '';
+  
+  // 1. External (http, blob, data) -> Return as is
+  if (isExternalImagePath(path)) return path;
+
+  // 2. Clean the path
+  let cleanPath = path.trim();
+  
+  // Remove any double slashes at the start
+  cleanPath = cleanPath.replace(/^\/+/, '/');
+
+  // Strip the old prefix if it exists
+  const PREFIX = '/dar-el-meamar-next';
+  if (cleanPath.startsWith(PREFIX)) {
+    cleanPath = cleanPath.substring(PREFIX.length);
+  }
+
+  // Ensure it starts with /
+  if (!cleanPath.startsWith('/')) {
+    cleanPath = '/' + cleanPath;
+  }
+
+  // Now we have something like /modern-villa-v3.jpg or /assets/modern-villa-v3.jpg
+  if (cleanPath.startsWith('/assets/')) {
+    return cleanPath;
+  }
+
+  // Prepend /assets
+  return `/assets${cleanPath}`;
 }
 
-/** External URLs pass through unchanged. */
-export function resolveExternalPath(path: string): string | null {
-  return isExternalImagePath(path) ? path : null;
-}
-
-/** Paths already starting with `/` get basePath prepended. */
-export function resolveRootedPublicPath(path: string): string | null {
-  if (!isRootedPublicPath(path)) return null;
-  return `${ASSET_BASE_PATH}${path}`;
-}
-
-/** Bare filenames resolve under `/assets` with basePath. */
-export function resolveRelativeAssetPath(path: string): string {
-  return `${ASSET_BASE_PATH}/assets/${path}`;
-}
-
-export function resolvePublicImageUrl(path: string): string {
-  return (
-    resolveExternalPath(path) ??
-    resolveRootedPublicPath(path) ??
-    resolveRelativeAssetPath(path)
-  );
+/**
+ * Returns the same for now since basePath is disabled.
+ */
+export function resolveFullUrl(path: string | undefined | null): string {
+  return resolvePublicImageUrl(path);
 }

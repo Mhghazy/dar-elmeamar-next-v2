@@ -31,7 +31,7 @@ export default function AboutHero() {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ 
-            backgroundImage: `url('${assets.resolveUrl('signature-estate-main.jpg')}')`,
+            backgroundImage: `url('${assets.resolveFullUrl('signature-estate-main.jpg')}')`,
             backgroundColor: '#0b3b33',
           }}
         />

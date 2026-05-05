@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInLeft, fadeInRight, scaleIn, staggerContainer } from '../../utils/animations';
 import { Building2 } from 'lucide-react';
@@ -7,17 +7,64 @@ import { useLanguage } from '../../context/LanguageContext';
 import { PROJECTS_EXTRA } from '../../config/projectsExtra';
 import ProjectModal from './Modal/ProjectModal';
 import { assets } from '@/lib/assets/assetFacade';
+import { getMockProjects } from '@/lib/mockDb';
+
+import { supabase } from '@/lib/supabase/client';
+import { createLog } from '@/lib/gallery/logRepository';
 
 const GalleryProjects: React.FC = () => {
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<any | null>(null);
+  const [dbProjects, setDbProjects] = useState<any[]>([]);
 
-  const projects = t.galleryPage.projects.map((proj: any) => ({
-    ...proj,
-    image: PROJECTS_EXTRA[proj.id]?.main || '',
-    images: PROJECTS_EXTRA[proj.id]?.details || [],
-    color: PROJECTS_EXTRA[proj.id]?.color || 'from-gray-400 to-gray-600',
-  }));
+  useEffect(() => {
+    const isUiMode = !process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL === 'your-project-url';
+
+    if (isUiMode) {
+      setDbProjects(getMockProjects());
+      return;
+    }
+
+    async function fetchDbProjects() {
+      try {
+        const { data } = await supabase.from('projects').select('*');
+        if (data) setDbProjects(data);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    fetchDbProjects();
+  }, []);
+
+  const projects = [
+    ...t.galleryPage.projects.map((proj: any) => ({
+      ...proj,
+      image: PROJECTS_EXTRA[proj.id]?.main || '',
+      images: PROJECTS_EXTRA[proj.id]?.details || [],
+      color: PROJECTS_EXTRA[proj.id]?.color || 'from-gray-400 to-gray-600',
+    })),
+    ...dbProjects.map(proj => ({
+      id: proj.id,
+      title: proj.title,
+      description: proj.description,
+      category: proj.category,
+      location: proj.location,
+      year: proj.year,
+      image: proj.hero_image || proj.image_url,
+      images: proj.sections ? proj.sections.flatMap((s: any) => s.images.map((img: any) => img.src)) : [proj.image_url],
+      color: 'from-teal-400 to-teal-600'
+    }))
+  ];
+
+  const handleOpenProject = (project: any) => {
+    setSelectedProject(project);
+    createLog({
+      user_email: 'Visitor',
+      action: 'Viewed Project',
+      target: project.title,
+      type: 'view'
+    });
+  };
 
   return (
     <section className="py-20 bg-white dark:bg-gray-900">
@@ -42,7 +89,7 @@ const GalleryProjects: React.FC = () => {
               <div className={`relative h-64 bg-gradient-to-br ${project.color} overflow-hidden`}>
                 {project.image ? (
                   <motion.img
-                    src={assets.resolveUrl(project.image)}
+                    src={assets.resolveFullUrl(project.image)}
                     alt={project.title}
                     className="w-full h-full object-cover"
                     initial={{ scale: 1 }}
@@ -73,7 +120,7 @@ const GalleryProjects: React.FC = () => {
 
                 {/* Details Button */}
                 <button
-                  onClick={() => setSelectedProject(project)}
+                  onClick={() => handleOpenProject(project)}
                   className="px-4 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition-colors"
                 >
                   {t.galleryPage.detailsButton}

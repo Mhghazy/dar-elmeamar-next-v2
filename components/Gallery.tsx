@@ -10,11 +10,25 @@ import { useLanguage } from '../context/LanguageContext';
 import { type GalleryFolder } from '../config/galleryData';
 import { publicGalleryCatalog } from '@/lib/gallery/publicCatalog';
 import { assets } from '@/lib/assets/assetFacade';
+import { supabase } from '@/lib/supabase/client';
+import { getProjects } from '@/lib/gallery/projectRepository';
 
 const Gallery = () => {
   const { t, language } = useLanguage();
-  const [selectedFolder, setSelectedFolder] = useState<GalleryFolder | null>(null);
+  const [selectedFolder, setSelectedFolder] = useState<any | null>(null);
+  const [dbProjects, setDbProjects] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState<string | null>(null);
+  const isAr = language === 'ar';
+
+  useEffect(() => {
+    async function loadData() {
+      const projects = await getProjects();
+      setDbProjects(projects);
+      setLoading(false);
+    }
+    loadData();
+  }, []);
 
   return (
     <motion.section
@@ -56,7 +70,7 @@ const Gallery = () => {
           variants={staggerContainer}
           className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16 overflow-x-auto md:overflow-x-visible pb-12 md:pb-0 snap-x snap-mandatory scrollbar-hide"
         >
-          {publicGalleryCatalog.getOrderedFolders(language).map((folder) => (
+          {dbProjects.map((folder: any) => (
             <div key={folder.id} className="min-w-[85vw] md:min-w-0 snap-center">
               <motion.div
                 variants={fadeInUp}
@@ -69,19 +83,23 @@ const Gallery = () => {
                 <div className="relative z-10 bg-white dark:bg-[#121212] rounded-xl shadow-2xl overflow-hidden border border-gray-200/50 dark:border-white/5 transition-all duration-700 group-hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.25)] group-hover:-translate-y-3">
                   <div className="relative h-80 overflow-hidden bg-gray-100 dark:bg-gray-900">
                     <div className="relative w-full h-full">
-                      <Image 
-                        src={assets.resolveUrl(folder.heroImage)} 
-                        alt={folder.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
-                      />
+                      {folder.hero_image ? (
+                        <Image 
+                          src={assets.resolveUrl(folder.hero_image)} 
+                          alt={folder.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center text-gray-500">No Hero Image</div>
+                      )}
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-60 group-hover:opacity-40 transition-opacity duration-700" />
                     <div className="absolute top-6 left-6">
                       <div className="px-4 py-1.5 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full scale-90">
                         <span className="text-[10px] text-white uppercase tracking-[0.2em] font-bold">
-                          {folder.category}
+                          {(t.galleryUi as any)[folder.category.toLowerCase()] || folder.category}
                         </span>
                       </div>
                     </div>
@@ -89,7 +107,7 @@ const Gallery = () => {
 
                   <div className="p-10">
                     <h3 className="text-2xl font-light text-gray-900 dark:text-white mb-6 leading-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
-                      {folder.title}
+                      {isAr ? (folder.title_ar || folder.title) : folder.title}
                     </h3>
                     <div className="flex items-center gap-3 text-teal-600 dark:text-teal-400 text-sm font-semibold tracking-wide">
                       <span className="uppercase text-[11px] tracking-widest">{t.galleryUi.openWindow}</span>
@@ -118,7 +136,7 @@ const Gallery = () => {
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                className="relative w-full max-w-4xl h-[85vh] bg-white dark:bg-[#121212] rounded-[32px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden border border-white/10 flex flex-col"
+                className="relative w-full max-w-4xl min-h-[50vh] bg-white dark:bg-[#121212] rounded-[32px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden border border-white/10 flex flex-col"
               >
                 {/* Window Header Bar */}
                 <div className="flex items-center justify-between px-8 py-6 border-b border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-white/5 backdrop-blur-md">
@@ -147,34 +165,38 @@ const Gallery = () => {
                       {selectedFolder.category}
                     </span>
                     <h3 className="text-3xl md:text-5xl font-light text-gray-900 dark:text-white mb-8 leading-tight">
-                      {selectedFolder.title}
+                      {isAr ? (selectedFolder.title_ar || selectedFolder.title) : selectedFolder.title}
                     </h3>
                     <p className="text-lg text-gray-500 dark:text-gray-400 font-light leading-relaxed mb-12">
-                      {selectedFolder.description}
+                      {isAr ? (selectedFolder.description_ar || selectedFolder.description) : selectedFolder.description}
                     </p>
 
                     <div className="space-y-24">
-                      {selectedFolder.sections.map((section, sIdx) => (
+                      {selectedFolder.sections?.map((section: any, sIdx: number) => (
                         <div key={sIdx}>
                           <h4 className="text-xl font-medium text-gray-900 dark:text-white mb-8 flex items-center gap-4">
                             <span className="w-8 h-[1px] bg-teal-600" />
                             {section.title}
                           </h4>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            {section.images.map((img, iIdx) => (
+                            {section.images?.map((img: any, iIdx: number) => (
                               <motion.div 
                                 key={iIdx}
                                 whileHover={{ scale: 1.02 }}
                                 onClick={() => setActiveImage(img.src)}
                                 className="group relative aspect-video bg-gray-100 dark:bg-[#0a0a0a] rounded-2xl overflow-hidden cursor-zoom-in border border-white/5"
                               >
-                                <Image 
-                                  src={assets.resolveUrl(img.src)} 
-                                  alt={img.alt}
-                                  fill
-                                  sizes="(max-width: 768px) 100vw, 500px"
-                                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
+                                {img.src ? (
+                                  <Image 
+                                    src={assets.resolveUrl(img.src)} 
+                                    alt={img.alt || 'Gallery Image'}
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 500px"
+                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                  />
+                                ) : (
+                                  <div className="w-full h-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center text-gray-500 text-xs">No Image</div>
+                                )}
                                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
                               </motion.div>
                             ))}
@@ -220,6 +242,21 @@ const Gallery = () => {
             </motion.div>
           )}
         </AnimatePresence>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-20 flex justify-center"
+        >
+          <Link 
+            href="/contact"
+            className="group flex items-center gap-6 px-10 py-5 bg-teal-600 text-white rounded-full font-bold shadow-2xl shadow-teal-600/30 hover:bg-teal-700 transition-all hover:scale-105 active:scale-95"
+          >
+            <span className="text-lg uppercase tracking-widest">{t.galleryUi.contactUsCta}</span>
+            <ArrowRight size={22} className="group-hover:translate-x-2 transition-transform" />
+          </Link>
+        </motion.div>
       </div>
     </motion.section>
   );
