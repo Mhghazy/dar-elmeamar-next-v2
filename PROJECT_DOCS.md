@@ -32,6 +32,7 @@ Version: 2.0 (Next.js Migration)
 | **next-themes** | `^0.4.6`  | Theming | Seamless dark/light mode switching. |
 | **next-sitemap** | `^4.2.3`  | SEO | Automatic generation of `sitemap.xml` and `robots.txt`. |
 | **sharp** | `^0.33.5` | Optimization | Production-grade image resizing and conversion. |
+| **schema-dts** | `^1.1.2`  | SEO | Type-safe JSON-LD structured data for Google. |
 | **three / vanta** | Latest | Visuals | Interactive 3D backgrounds for the Hero section. |
 
 ### Technologies NOT Used:
@@ -98,11 +99,7 @@ The transition from the legacy Vite-based application (`legacy-vite-app`) to the
 | **Data Handling** | Prop drilling / Ad-hoc | Repository Pattern |
 | **Image Handling** | Manual `<img>` tags | Automatic `next/image` |
 | **Backend** | Direct API calls | Data Abstraction Layer |
-| **Security** | None (Client only) | Middleware (Planned) |
-
----
-
-## 5. Repository Structure
+| **Security** | None (Client only) | ## 5. Repository Structure
 
 ```text
 dar-elmeamar-next-v2/
@@ -142,26 +139,46 @@ dar-elmeamar-next-v2/
 ├── utils/                   # Shared animations and helper functions
 ├── next-sitemap.config.js   # Main configuration for sitemap generation
 ├── next.config.mjs          # Next.js build & export configuration
-└── tailwind.config.ts       # Design system and theme configuration
+├── tailwind.config.ts       # Design system and theme configuration
 ```
 
 ---
 
-## 6. The Data Layer (Crucial)
+## 6. Core Features & Capabilities
 
-To ensure the app remains functional during migration and development, we use a **Repository Pattern** located in `lib/gallery/`.
+### 6.1. Cinematic Gallery
+A high-performance gallery using horizontal scrolling and **Framer Motion** for smooth transitions. Projects are grouped by category and feature high-resolution visuals. The gallery uses an **Asset Facade** to ensure images load correctly across both local dev and GitHub Pages environments.
 
-### How it works:
+### 6.2. Interactive Backgrounds
+Uses **Vanta.js** and **Three.js** to create dynamic, responsive backgrounds that respond to mouse movement, enhancing the premium feel of the landing page.
+
+### 6.3. Sophisticated Admin Dashboard
+Located at `/admin`, this area allows company employees to manage the project portfolio.
+- **Demo Mode**: Automatically detects if Supabase is unavailable and falls back to `LocalStorage` for demonstration purposes.
+- **Project Management**: Create, edit, and delete projects with multiple sections and images.
+- **Activity Log**: Audits all changes made within the dashboard for security and tracking.
+
+---
+
+## 7. The Data Layer & Architecture
+
+To ensure the app remains functional during migration and development, we use a **Repository Pattern** located in `lib/gallery/`. This decouples the UI from the data source entirely.
+
+### 7.1. How it works:
 All components request data from repositories (e.g., `getProjects()`). The repository automatically detects if a real Supabase backend is configured.
 - **If Supabase is configured**: Fetches live data from the database.
 - **If NOT configured**: Falls back to `lib/mockDb.ts` which uses `localStorage` to simulate a database.
 
+### 7.2. Repository Structure:
+- `projectRepository.ts`: Handles project CRUD operations.
+- `userRepository.ts`: Manages admin users and session state.
+- `logRepository.ts`: Handles activity logging for the dashboard.
+
 > [!IMPORTANT]
 > **NEVER** bypass the repository layer to call Supabase directly in a component. This ensures the "Demo Mode" continues to work for stakeholders without technical setups.
-
 ---
 
-## 7. Development Workflow
+## 8. Development Workflow
 
 ### Local Setup
 1. **Clone**: `git clone https://github.com/mhghazy/dar-elmeamar-next-v2`
@@ -178,7 +195,7 @@ All components request data from repositories (e.g., `getProjects()`). The repos
 
 ---
 
-## 8. SEO & Localization
+## 9. SEO & Localization
 
 ### Multi-language Support
 The project uses a custom `LanguageContext` to handle **English (EN)** and **Arabic (AR)**.
@@ -194,7 +211,7 @@ The project uses a custom `LanguageContext` to handle **English (EN)** and **Ara
 
 ---
 
-## 9. Deployment Strategy
+## 10. Deployment Strategy
 
 ### Current: GitHub Pages (Demo/Static)
 - **Config**: `output: 'export'` and `basePath` are set in `next.config.mjs`.
@@ -211,7 +228,7 @@ To enable the full power of the dashboard, the following steps are required:
 
 ---
 
-## 10. Known Issues & Maintenance
+## 11. Known Issues & Maintenance
 
 1. **Mock Auth**: The login page currently accepts any credentials because of `NEXT_PUBLIC_MOCK_AUTH=true`. This MUST be disabled in production.
 2. **Asset Resolution**: All images MUST use the `assets.resolveUrl()` utility to handle the `basePath` correctly on GitHub Pages.
