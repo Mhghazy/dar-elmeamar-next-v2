@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
 export const dynamic = 'force-static';
+export const revalidate = 0;
 
 export const alt = 'Dar El Meamar | Luxury Architectural Design & Construction';
 export const size = {

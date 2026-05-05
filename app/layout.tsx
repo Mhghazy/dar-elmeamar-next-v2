@@ -17,6 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://darelmeamar.com'),
   title: {
     default: "Dar El Meamar | Luxury Architectural Design & Construction",
     template: "%s | Dar El Meamar"
