@@ -78,36 +78,77 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Dar El Meamar",
+              "url": "https://mhghazy.github.io/dar-elmeamar-next-v2",
+              "logo": "https://mhghazy.github.io/dar-elmeamar-next-v2/logo.png",
+              "description": "Premier construction and architectural design firm specializing in luxury projects.",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+20-XXX-XXXX-XXX",
+                "contactType": "customer service"
+              },
+              "sameAs": [
+                "https://www.facebook.com/darelmeamar",
+                "https://www.instagram.com/darelmeamar"
+              ]
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "Dar El Meamar",
+              "alternateName": "دار المعمار",
+              "description": "شركة دار المعمار الرائدة في البناء والتشييد والتصميم المعماري الفاخر بالقاهرة، مصر",
+              "url": "https://mhghazy.github.io/dar-elmeamar-next-v2",
+              "logo": "https://mhghazy.github.io/dar-elmeamar-next-v2/og-image.jpg",
+              "telephone": "+201507412000",
+              "email": "info@darelmeamar.com",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Cairo",
+                "addressRegion": "Cairo Governorate",
+                "addressCountry": "EG"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 29.9755,
+                "longitude": 31.5150
+              },
+              "openingHours": "Mo-Fr 09:00-17:00",
+              "priceRange": "$$$$",
+              "servedCuisine": null,
+              "hasMap": "https://maps.google.com/?q=29.9755,31.5150",
+              "sameAs": [
+                "https://www.facebook.com/share/1CkkfEbiKA/",
+                "https://x.com/darelmeamar",
+                "https://www.linkedin.com/company/110319317/",
+                "https://www.tiktok.com/@darelmeamar"
+              ],
+              "knowsLanguage": ["ar", "en"]
+            }),
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
           <LanguageProvider>
             <ConsoleWarningSuppress />
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                  "@context": "https://schema.org",
-                  "@type": "Organization",
-                  "name": "Dar El Meamar",
-                  "url": "https://mhghazy.github.io/dar-elmeamar-next-v2",
-                  "logo": "https://mhghazy.github.io/dar-elmeamar-next-v2/logo.png",
-                  "description": "Premier construction and architectural design firm specializing in luxury projects.",
-                  "contactPoint": {
-                    "@type": "ContactPoint",
-                    "telephone": "+20-XXX-XXXX-XXX",
-                    "contactType": "customer service"
-                  },
-                  "sameAs": [
-                    "https://www.facebook.com/darelmeamar",
-                    "https://www.instagram.com/darelmeamar"
-                  ]
-                }),
-              }}
-            />
             {children}
           </LanguageProvider>
+
         </ThemeProvider>
       </body>
     </html>

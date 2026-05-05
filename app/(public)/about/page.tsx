@@ -6,9 +6,8 @@ import AboutCards from '@/components/about/AboutCards';
 import AboutValues from '@/components/about/AboutValues';
 
 export const metadata: Metadata = {
-  title: 'About Us | Dar Al-Maamar — Luxury Real Estate Development Since 2007',
-  description:
-    'Dar Al-Maamar Real Estate Development has crafted premium residential properties with distinctive architectural design and luxury finishing since 2007. Discover our story, values, and commitment to refined living.',
+  title: 'من نحن | دار المعمار',
+  description: 'تعرف على شركة دار المعمار — أكثر من 19 عاماً من الخبرة في البناء والتشييد الفاخر بالقاهرة',
   keywords: [
     'Dar Al-Maamar',
     'luxury real estate development',
@@ -18,12 +17,13 @@ export const metadata: Metadata = {
     'real estate developer Egypt',
   ],
   openGraph: {
-    title: 'About Dar Al-Maamar — Luxury Real Estate Development',
+    title: 'من نحن | دار المعمار',
     description:
-      'Crafting refined living since 2007. Distinctive architecture, luxurious entrances, and premium quality in every project.',
+      'تعرف على شركة دار المعمار — أكثر من 19 عاماً من الخبرة في البناء والتشييد الفاخر بالقاهرة',
     type: 'website',
   },
 };
+
 
 export default function AboutPage() {
   return (

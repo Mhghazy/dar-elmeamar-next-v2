@@ -6,9 +6,10 @@ import WorksCTA from '@/components/works/WorksCTA';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Dar Al-Maamar | Luxury Real Estate Development & Architectural Design',
-  description: 'Dar Al-Maamar is a leading real estate developer specializing in luxury residential projects, architectural design, and premium finishing solutions with over 19 years of experience.',
+  title: 'أعمالنا | دار المعمار',
+  description: 'مشاريع دار المعمار المنجزة في البناء السكني والتجاري والتصميم المعماري',
 };
+
 
 export default function WorksPage() {
   return (
