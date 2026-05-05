@@ -9,7 +9,7 @@ export function isExternalImagePath(path: string | undefined | null): boolean {
 
 /**
  * Universal resolution for Next.js and standard tags.
- * Ensures all local assets start with /assets/
+ * Ensures all local assets are prefixed with the repository name and correct folder.
  */
 export function resolvePublicImageUrl(path: string | undefined | null): string {
   if (!path) return '';
@@ -23,10 +23,12 @@ export function resolvePublicImageUrl(path: string | undefined | null): string {
   // Remove any double slashes at the start
   cleanPath = cleanPath.replace(/^\/+/, '/');
 
-  // Strip the old prefix if it exists
-  const PREFIX = '/dar-elmeamar-next-v2';
-  if (cleanPath.startsWith(PREFIX)) {
-    cleanPath = cleanPath.substring(PREFIX.length);
+  // Strip any old or current repository prefixes to avoid doubling
+  const REPO_PREFIXES = ['/dar-el-meamar-next', '/dar-elmeamar-next-v2'];
+  for (const prefix of REPO_PREFIXES) {
+    if (cleanPath.startsWith(prefix)) {
+      cleanPath = cleanPath.substring(prefix.length);
+    }
   }
 
   // Ensure it starts with /
@@ -34,17 +36,20 @@ export function resolvePublicImageUrl(path: string | undefined | null): string {
     cleanPath = '/' + cleanPath;
   }
 
-  // Now we have something like /modern-villa-v3.jpg or /assets/modern-villa-v3.jpg
-  if (cleanPath.startsWith('/assets/')) {
-    return cleanPath;
+  // Final Production Prefix (GitHub Pages Repo Name)
+  const BASE_PATH = '/dar-elmeamar-next-v2';
+
+  // If it already has a folder prefix, just return it with BASE_PATH
+  if (cleanPath.startsWith('/assets/') || cleanPath.startsWith('/images/')) {
+    return `${BASE_PATH}${cleanPath}`;
   }
 
-  // Prepend /assets
-  return `/assets${cleanPath}`;
+  // Default to prepending /assets/ for project images
+  return `${BASE_PATH}/assets${cleanPath}`;
 }
 
 /**
- * Returns the same for now since basePath is disabled.
+ * Returns the same for now.
  */
 export function resolveFullUrl(path: string | undefined | null): string {
   return resolvePublicImageUrl(path);
