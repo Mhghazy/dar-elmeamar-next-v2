@@ -24,7 +24,7 @@ export function resolvePublicImageUrl(path: string | undefined | null): string {
   cleanPath = cleanPath.replace(/^\/+/, '/');
 
   // Strip the old prefix if it exists
-  const PREFIX = '/dar-el-meamar-next';
+  const PREFIX = '/dar-elmeamar-next-v2';
   if (cleanPath.startsWith(PREFIX)) {
     cleanPath = cleanPath.substring(PREFIX.length);
   }

@@ -146,7 +146,7 @@ export default function AdminDashboard() {
 
   async function checkUser() {
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) router.push('/dar-el-meamar-next/admin/login');
+    if (!user) router.push('/admin/login');
     else setUser(user);
   }
 
