@@ -34,8 +34,17 @@ export function resolvePublicImageUrl(path: string | undefined | null): string {
   // Remove leading slash for consistent processing
   cleanPath = cleanPath.replace(/^\/+/, '');
 
+  // In production (GitHub Pages), we need the repository name as a base path
+  // In development, Next.js serves from the root
+  const basePath = process.env.NODE_ENV === 'production' ? '/dar-elmeamar-next-v2' : '';
+
+  // Prevent duplicate assets/ prefix
+  if (cleanPath.startsWith('assets/')) {
+    return `${basePath}/${cleanPath}`;
+  }
+
   // Default to prepending /assets/ for project images
-  return `/assets/${cleanPath}`;
+  return `${basePath}/assets/${cleanPath}`;
 }
 
 /**

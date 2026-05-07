@@ -28,7 +28,7 @@ const WorksHero = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: `url('${assets.resolveFullUrl('works_hero_bg.png')}')`,
+            backgroundImage: `url('${assets.resolveFullUrl('post-modern-villa-night.jpg')}')`,
             backgroundColor: '#0F3D2E' 
           }}
         />
