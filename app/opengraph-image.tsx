@@ -1,7 +1,6 @@
 import { ImageResponse } from 'next/og';
 
 export const dynamic = 'force-static';
-export const revalidate = 0;
 
 export const alt = 'Dar El Meamar | Luxury Architectural Design & Construction';
 export const size = {
@@ -68,17 +67,6 @@ export default async function Image() {
             Dar El Meamar
           </h1>
           
-          <h2 
-            style={{ 
-              fontSize: 72, 
-              color: '#0d9488', 
-              margin: 0, 
-              fontWeight: 'bold',
-            }}
-          >
-            دار المعمار
-          </h2>
-
           <p 
             style={{ 
               fontSize: 36, 
@@ -88,7 +76,7 @@ export default async function Image() {
               fontStyle: 'italic',
             }}
           >
-            نبني أحلامك لتصبح حقيقة
+            Building Your Dreams Into Reality
           </p>
         </div>
       </div>
