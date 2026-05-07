@@ -6,8 +6,8 @@ import WorksCTA from '@/components/works/WorksCTA';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'أعمالنا | دار المعمار',
-  description: 'مشاريع دار المعمار المنجزة في البناء السكني والتجاري والتصميم المعماري',
+  title: 'Our Works | Dar El Meamar',
+  description: 'Completed residential and commercial construction projects and architectural designs by Dar El Meamar',
 };
 
 

@@ -78,7 +78,7 @@ const Hero: React.FC<HeroProps> = ({ images }) => {
 
             {/* CTA Buttons */}
             <motion.div variants={scaleIn} className="flex flex-col sm:flex-row gap-4">
-              <PrimaryButton to="/contact" label={t.hero.cta} />
+              <PrimaryButton to="/contact" label={t.hero.cta} className="px-8 py-4 text-lg" />
               <OutlineButton to="/works" label={t.hero.learnMore} />
             </motion.div>
           </motion.div>

@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://mhghazy.github.io/dar-elmeamar-next-v2',
+  siteUrl: 'http://localhost:3000',
   generateRobotsTxt: true,
   outDir: './out',
   robotsTxtOptions: {

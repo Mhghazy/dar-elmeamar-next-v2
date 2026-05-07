@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command \"Get-Content 'lib\\\\\\\\assets\\\\\\\\urlResolution.ts' -TotalCount 50\")"
+    ]
+  }
+}

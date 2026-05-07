@@ -6,8 +6,8 @@ import AboutCards from '@/components/about/AboutCards';
 import AboutValues from '@/components/about/AboutValues';
 
 export const metadata: Metadata = {
-  title: 'من نحن | دار المعمار',
-  description: 'تعرف على شركة دار المعمار — أكثر من 19 عاماً من الخبرة في البناء والتشييد الفاخر بالقاهرة',
+  title: 'About Us | Dar El Meamar',
+  description: 'Learn about Dar El Meamar — over 19 years of experience in luxury construction and architectural design in Cairo',
   keywords: [
     'Dar Al-Maamar',
     'luxury real estate development',
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     'real estate developer Egypt',
   ],
   openGraph: {
-    title: 'من نحن | دار المعمار',
+    title: 'About Us | Dar El Meamar',
     description:
-      'تعرف على شركة دار المعمار — أكثر من 19 عاماً من الخبرة في البناء والتشييد الفاخر بالقاهرة',
+      'Learn about Dar El Meamar — over 19 years of experience in luxury construction and architectural design in Cairo',
     type: 'website',
   },
 };

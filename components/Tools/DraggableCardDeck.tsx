@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cardStyleFromDepth, deckDepth } from "./deckMath";
+import { assets } from "@/lib/assets/assetFacade";
 
 interface Card {
   image: string;
@@ -130,7 +131,7 @@ const DraggableCardDeck: React.FC<DraggableCardDeckProps> = ({
                   style={{
                     width: cardWidth,
                     height: cardHeight,
-                    backgroundImage: `url(${card.image})`,
+                    backgroundImage: `url(${assets.resolveFullUrl(card.image)})`,
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center center",
                     backgroundSize: card.backgroundSize ?? "cover",

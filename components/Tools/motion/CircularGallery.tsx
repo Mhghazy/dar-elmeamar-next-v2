@@ -1,6 +1,7 @@
 "use client";
 import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from 'ogl';
 import { useEffect, useRef } from 'react';
+import { resolvePublicImageUrl } from '@/lib/assets/urlResolution';
 
 type GL = Renderer['gl'];
 
@@ -287,7 +288,7 @@ class Media {
     });
     const img = new Image();
     img.crossOrigin = 'anonymous';
-    img.src = this.image;
+    img.src = resolvePublicImageUrl(this.image);
     img.onload = () => {
       texture.image = img;
       this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];

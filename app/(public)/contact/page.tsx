@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import Contact from '@/components/Contact';
 
 export const metadata: Metadata = {
-  title: 'اتصل بنا | دار المعمار',
-  description: 'تواصل مع فريق دار المعمار للحصول على استشارة مجانية',
+  title: 'Contact Us | Dar El Meamar',
+  description: 'Get in touch with the Dar El Meamar team for a free consultation',
 };
 
 

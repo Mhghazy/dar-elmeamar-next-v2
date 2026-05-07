@@ -1,9 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/dar-elmeamar-next-v2',
   images: {
     unoptimized: true,
+  },
+  async redirects() {
+    return [
+      {
+        source: '/dar-elmeamar-next-v2/:path*',
+        destination: '/:path*',
+        permanent: true,
+      },
+    ];
   },
 };
 

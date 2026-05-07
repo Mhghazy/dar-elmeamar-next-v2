@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, X, ArrowLeft, ZoomIn } from 'lucide-react';
+import PrimaryButton from '@/components/Tools/Buttons/PrimaryButton';
 import { fadeInUp, staggerContainer } from '../utils/animations';
 import { useLanguage } from '../context/LanguageContext';
 import { type GalleryFolder } from '../config/galleryData';
@@ -249,13 +250,7 @@ const Gallery = () => {
           viewport={{ once: true }}
           className="mt-20 flex justify-center"
         >
-          <Link 
-            href="/contact"
-            className="group flex items-center gap-6 px-10 py-5 bg-teal-600 text-white rounded-full font-bold shadow-2xl shadow-teal-600/30 hover:bg-teal-700 transition-all hover:scale-105 active:scale-95"
-          >
-            <span className="text-lg uppercase tracking-widest">{t.galleryUi.contactUsCta}</span>
-            <ArrowRight size={22} className="group-hover:translate-x-2 transition-transform" />
-          </Link>
+          <PrimaryButton to="/contact" label={t.galleryUi.contactUsCta} />
         </motion.div>
       </div>
     </motion.section>

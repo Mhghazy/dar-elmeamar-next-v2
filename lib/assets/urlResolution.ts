@@ -13,13 +13,13 @@ export function isExternalImagePath(path: string | undefined | null): boolean {
  */
 export function resolvePublicImageUrl(path: string | undefined | null): string {
   if (!path) return '';
-  
+
   // 1. External (http, blob, data) -> Return as is
   if (isExternalImagePath(path)) return path;
 
   // 2. Clean the path
   let cleanPath = path.trim();
-  
+
   // Remove any double slashes at the start
   cleanPath = cleanPath.replace(/^\/+/, '/');
 
@@ -31,21 +31,11 @@ export function resolvePublicImageUrl(path: string | undefined | null): string {
     }
   }
 
-  // Ensure it starts with /
-  if (!cleanPath.startsWith('/')) {
-    cleanPath = '/' + cleanPath;
-  }
-
-  // Final Production Prefix (GitHub Pages Repo Name)
-  const BASE_PATH = '/dar-elmeamar-next-v2';
-
-  // If it already has a folder prefix, just return it with BASE_PATH
-  if (cleanPath.startsWith('/assets/') || cleanPath.startsWith('/images/')) {
-    return `${BASE_PATH}${cleanPath}`;
-  }
+  // Remove leading slash for consistent processing
+  cleanPath = cleanPath.replace(/^\/+/, '');
 
   // Default to prepending /assets/ for project images
-  return `${BASE_PATH}/assets${cleanPath}`;
+  return `/assets/${cleanPath}`;
 }
 
 /**

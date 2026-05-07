@@ -64,7 +64,7 @@ const Services = () => {
           className="grid md:grid-cols-2 lg:grid-cols-2 gap-8"
           variants={staggerContainer}
         >
-          {t.services.list.map((service, idx) => (
+          {t.services.list.map((service: { title: string; desc: string }, idx: number) => (
             <motion.div
               key={idx}
               variants={

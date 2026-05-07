@@ -17,42 +17,11 @@ export default function ServicesClient() {
   const s = t.servicesRoute;
 
   useEffect(() => {
+    // Only preload above-the-fold images for performance
     assets.preloadMany([
       'services-hero-collage.png',
       'services-dev-visual.png',
       'c44b99ec-9fc8-44e1-a38e-7b72eb6ddb3a.png',
-      'finishing1.png',
-      'finishing2.png',
-      'finishing3.png',
-      'finishing4.png',
-      'V 395 Shot 1.jpg',
-      'V 395 Shot 2.jpg',
-      'V 395 Shot 3.jpg',
-      'post-modern-villa.jpg',
-      'post-modern-villa-left .jpg',
-      'post-modern-villa-night.jpg',
-      'post-modern-villa-right.jpg',
-      'post-modern-villa-entrance1.jpg',
-      'post-modern-villa-entrance2.jpg',
-      'post-modern-villa-entrance3.jpg',
-      'V 14 entrance Shot 1.jpg',
-      'V 14 entrance Shot 2.jpg',
-      'V 14 entrance Shot 3.jpg',
-      'signature-estate-sales-typical.jpg',
-      'signature-estate-sales-ground-1.jpg',
-      '13- Ground  Right.jpg',
-      '14- Ground left.jpg',
-      '15-Lower Ground RIGHT.jpg',
-      '16-Lower Ground Left.jpg',
-      '17-Garage.jpg',
-      'Entrance Shot 1.jpg',
-      'Entrance Shot 2.jpg',
-      'Entrance Shot 3.jpg',
-      '9- typical right.jpg',
-      '10- typical left.jpg',
-      '11-ground right.jpg',
-      '12-ground left.jpg',
-      '13-garage.jpg',
     ]);
   }, []);
 

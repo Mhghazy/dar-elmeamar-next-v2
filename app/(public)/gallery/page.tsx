@@ -3,8 +3,8 @@ import GalleryShowcase from '@/components/gallery/GalleryShowcase';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'معرض الأعمال | دار المعمار',
-  description: 'استعرض أبرز مشاريعنا في البناء والتشطيبات الفاخرة',
+  title: 'Gallery | Dar El Meamar',
+  description: 'Explore our finest construction and luxury finishing projects',
   keywords: [
     'Architectural Gallery', 'Luxury Villa Portfolio', 'Real Estate', 'Residential', 'Finishing', 'Compounds',
     'معرض المعمار', 'محفظة الفلل الفاخرة', 'عقارات', 'سكني', 'تشطيبات', 'كمبوندات'
