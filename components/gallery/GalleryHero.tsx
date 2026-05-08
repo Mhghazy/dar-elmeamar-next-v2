@@ -1,9 +1,13 @@
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
-import VantaBackground from '../Tools/VantaBackground';
+import dynamic from 'next/dynamic';
 import { textVariant, fadeInUp } from '../../utils/animations';
 import { useLanguage } from '../../context/LanguageContext';
+
+const VantaBackground = dynamic(() => import('../Tools/VantaBackground'), {
+  ssr: false,
+});
 
 const GalleryHero: React.FC = () => {
   const { t } = useLanguage();

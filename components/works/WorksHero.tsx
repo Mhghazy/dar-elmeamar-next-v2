@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { assets } from '@/lib/assets/assetFacade';
 import { useLanguage } from '@/context/LanguageContext';
 
+import Image from 'next/image';
+
 const WorksHero = () => {
   const { t } = useLanguage();
   const h = t.worksMarketing.hero;
@@ -25,12 +27,12 @@ const WorksHero = () => {
         style={{ y }}
         className="absolute inset-0 z-0"
       >
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ 
-            backgroundImage: `url('${assets.resolveFullUrl('post-modern-villa-night.jpg')}')`,
-            backgroundColor: '#0F3D2E' 
-          }}
+        <Image 
+          src={assets.resolveFullUrl('post-modern-villa-night.jpg')}
+          alt="Luxury Architecture Background"
+          fill
+          priority
+          className="object-cover"
         />
         {/* Cinematic Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80" />

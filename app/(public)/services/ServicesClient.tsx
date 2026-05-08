@@ -26,7 +26,7 @@ export default function ServicesClient() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-white transition-colors duration-300">
+    <main className="relative min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-white transition-colors duration-300">
       {/* Hero */}
       <section
         key="services-hero-collage"
@@ -49,7 +49,10 @@ export default function ServicesClient() {
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/65" />
-        <div className="pointer-events-none absolute inset-0 opacity-[0.06] dark:opacity-[0.08] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+        <div 
+          className="pointer-events-none absolute inset-0 opacity-[0.06] dark:opacity-[0.08]" 
+          style={{ backgroundImage: `url('${assets.resolveFullUrl('noise.svg')}')` }}
+        />
 
         <motion.div
           variants={staggerContainer}
@@ -318,7 +321,10 @@ export default function ServicesClient() {
 
       {/* Section 5 — Design Philosophy */}
       <section className="py-28 md:py-36 relative overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
-        <div className="pointer-events-none absolute inset-0 opacity-[0.04] dark:opacity-[0.06] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+        <div 
+          className="pointer-events-none absolute inset-0 opacity-[0.04] dark:opacity-[0.06]" 
+          style={{ backgroundImage: `url('${assets.resolveFullUrl('noise.svg')}')` }}
+        />
         <motion.div
           variants={staggerContainer}
           initial="hidden"

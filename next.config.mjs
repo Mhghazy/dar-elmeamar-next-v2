@@ -4,15 +4,21 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  async redirects() {
-    return [
-      {
-        source: '/dar-elmeamar-next-v2/:path*',
-        destination: '/:path*',
-        permanent: true,
-      },
-    ];
+  compress: true,
+  poweredByHeader: false,
+  reactStrictMode: true,
+  experimental: {
+    optimizePackageImports: [
+      'lucide-react',
+      'framer-motion',
+      'motion',
+      '@supabase/supabase-js',
+      'react-icons',
+      'three',
+      'vanta',
+    ],
   },
+  generateBuildId: async () => 'darelmeamar-prod',
 };
 
 export default nextConfig;

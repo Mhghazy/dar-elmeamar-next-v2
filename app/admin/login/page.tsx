@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { supabase } from '@/lib/supabase/client';
 import { checkMockAuth } from '@/lib/gallery/userRepository';
 import { Lock, User, ArrowRight, Loader2 } from 'lucide-react';
+import { assets } from '@/lib/assets/assetFacade';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -49,7 +50,10 @@ export default function LoginPage() {
       {/* Cinematic Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#0b3b33_0%,_#071410_100%)] opacity-50" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05] pointer-events-none" />
+        <div 
+          className="absolute inset-0 opacity-[0.05] pointer-events-none" 
+          style={{ backgroundImage: `url('${assets.resolveFullUrl('noise.svg')}')` }}
+        />
       </div>
 
       <motion.div
@@ -76,6 +80,8 @@ export default function LoginPage() {
             <div className="relative group">
               <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-teal-400 transition-colors" size={18} />
               <input
+                id="admin-email"
+                name="email"
                 type="text"
                 required
                 value={email}
@@ -91,6 +97,8 @@ export default function LoginPage() {
             <div className="relative group">
               <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-teal-400 transition-colors" size={18} />
               <input
+                id="admin-password"
+                name="password"
                 type="password"
                 required
                 value={password}

@@ -92,8 +92,10 @@ const Contact = () => {
           {/* Contact Form */}
           <motion.form variants={fadeInRight} className="space-y-6">
             <div>
-              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">{t.contact.form.name}</label>
+              <label htmlFor="contact-name" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">{t.contact.form.name}</label>
               <input
+                id="contact-name"
+                name="name"
                 type="text"
                 className="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3
                            bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
@@ -101,8 +103,10 @@ const Contact = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">{t.contact.form.email}</label>
+              <label htmlFor="contact-email" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">{t.contact.form.email}</label>
               <input
+                id="contact-email"
+                name="email"
                 type="email"
                 className="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3
                            bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
@@ -110,8 +114,10 @@ const Contact = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">{t.contact.form.message}</label>
+              <label htmlFor="contact-message" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">{t.contact.form.message}</label>
               <textarea
+                id="contact-message"
+                name="message"
                 rows={4}
                 className="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3
                            bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100

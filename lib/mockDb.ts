@@ -47,7 +47,7 @@ export const MOCK_PROJECTS_DB = [
         title: 'Project Visuals',
         images: [
           { src: 'post-modern-villa.jpg', alt: 'Post - Modern Villa Main View' },
-          { src: 'post-modern-villa-left.jpg', alt: 'Contemporary Facade Perspective' },
+          { src: 'post-modern-villa-left .jpg', alt: 'Contemporary Facade Perspective' },
           { src: 'post-modern-villa-night.jpg', alt: 'Post - Modern Villa Night View' },
         ]
       },
@@ -86,12 +86,12 @@ export const MOCK_PROJECTS_DB = [
     description: 'This project is characterized by clean lines, geometric forms and minimalist detailing. Features a light, neutral color palette contrasted with stone cladding to maintain a clean, uncluttered aesthetic look.',
     location: 'New Cairo, Egypt',
     year: '2022',
-    hero_image: 'V-395-Shot-1.jpg',
+    hero_image: 'V 395 Shot 1.jpg',
     sections: [
       {
         title: 'Project Visuals',
         images: [
-          { src: 'V-395-Shot-1.jpg', alt: 'Contemporary Villa Main View' },
+          { src: 'V 395 Shot 1.jpg', alt: 'Contemporary Villa Main View' },
         ]
       }
     ],
@@ -118,6 +118,24 @@ export function getMockProjects() {
           proj.hero_image = proj.hero_image.replace(ASSETS_PATH, '');
         }
 
+        // Fix specific known filename mismatches
+        const fixFilename = (name: string) => {
+          if (!name) return name;
+          return name
+            .replace('V-395-Shot-1.jpg', 'V 395 Shot 1.jpg')
+            .replace('V-395-Shot-2.jpg', 'V 395 Shot 2.jpg')
+            .replace('V-395-Shot-3.jpg', 'V 395 Shot 3.jpg')
+            .replace('post-modern-villa-left.jpg', 'post-modern-villa-left .jpg')
+            .replace('V-14-entrance-Shot-1.jpg', 'V 14 entrance Shot 1.jpg')
+            .replace('V-14-entrance-Shot-2.jpg', 'V 14 entrance Shot 2.jpg')
+            .replace('V-14-entrance-Shot-3.jpg', 'V 14 entrance Shot 3.jpg')
+            .replace('Entrance-Shot-1.jpg', 'Entrance Shot 1.jpg')
+            .replace('Entrance-Shot-2.jpg', 'Entrance Shot 2.jpg')
+            .replace('Entrance-Shot-3.jpg', 'Entrance Shot 3.jpg');
+        };
+
+        proj.hero_image = fixFilename(proj.hero_image);
+
         proj.sections?.forEach((sec: any) => {
           sec.images?.forEach((img: any) => {
             if (img.src?.startsWith(OLD_PREFIX)) {
@@ -125,6 +143,7 @@ export function getMockProjects() {
             } else if (img.src?.startsWith(ASSETS_PATH)) {
               img.src = img.src.replace(ASSETS_PATH, '');
             }
+            img.src = fixFilename(img.src);
           });
         });
       });

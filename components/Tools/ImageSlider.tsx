@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { assets } from '@/lib/assets/assetFacade';
 
 
@@ -68,19 +69,26 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
       onTouchEnd={() => pauseOnHover && (hoverRef.current = false)}
     >
       <AnimatePresence initial={false} mode="wait">
-        <motion.img
-          key={index} // مفتاح ثابت لكل صورة
-          src={assets.resolveFullUrl(images[index])}
-          alt=""
-          loading={index === 0 ? 'eager' : 'lazy'}
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-          style={{ zIndex: 0, willChange: 'opacity, transform' }}
+        <motion.div
+          key={index}
+          className="absolute inset-0 w-full h-full"
           variants={variants}
           initial="enter"
           animate="center"
           exit="exit"
           transition={{ duration: transitionDuration, ease: 'easeInOut' }}
-        />
+          style={{ willChange: 'opacity, transform' }}
+        >
+          <Image
+            src={assets.resolveFullUrl(images[index])}
+            alt=""
+            fill
+            priority={index === 0}
+            loading={index === 0 ? undefined : 'lazy'}
+            sizes="100vw"
+            className="object-cover pointer-events-none"
+          />
+        </motion.div>
       </AnimatePresence>
 
       {/* Overlay */}

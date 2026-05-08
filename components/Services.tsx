@@ -13,8 +13,12 @@ import {
   textVariant,
 } from '../utils/animations';
 import { useLanguage } from '../context/LanguageContext';
-import VantaBackground from './Tools/VantaBackground';
+import dynamic from 'next/dynamic';
 import DraggableCardDeck from './Tools/DraggableCardDeck';
+
+const VantaBackground = dynamic(() => import('./Tools/VantaBackground'), {
+  ssr: false,
+});
 
 const Services = () => {
   const { t } = useLanguage();

@@ -28,8 +28,7 @@ const Hero: React.FC<HeroProps> = ({ images }) => {
       id="home"
       variants={staggerContainer}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      animate="visible"
       className="min-h-screen flex items-center
                   bg-gradient-to-br from-teal-500 via-white to-teal-200
                   dark:from-gray-950 dark:via-gray-800 dark:to-gray-800

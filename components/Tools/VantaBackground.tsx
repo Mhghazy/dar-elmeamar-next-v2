@@ -20,32 +20,36 @@ const VantaBackground = ({
   const [vantaEffect, setVantaEffect] = useState<any>(null);
 
 useEffect(() => {
+  let effect: any = null;
+  let timeout: NodeJS.Timeout;
+
   if (enabled && vantaRef.current) {
-    if (vantaEffect) vantaEffect.destroy();
-
-    const effect = NET({
-      el: vantaRef.current,
-      THREE,
-      mouseControls: true,
-      touchControls: true,
-      minHeight: 200.0,
-      minWidth: 200.0,
-      scale: 2.0,
-      scaleMobile: 2.0,
-      maxDistance: 25.0,
-      color,
-      backgroundColor,
-    });
-
-    setVantaEffect(effect);
-
-    // Re-initialize after short delay
-    const timeout = setTimeout(() => {
-      effect.resize(); // force recalculation
-    }, 500);
+    // Delay initialization to prioritize text and initial UI rendering
+    timeout = setTimeout(() => {
+      if (!vantaRef.current) return;
+      
+      try {
+        effect = NET({
+          el: vantaRef.current,
+          THREE,
+          mouseControls: true,
+          touchControls: true,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          scale: 2.0,
+          scaleMobile: 2.0,
+          maxDistance: 25.0,
+          color,
+          backgroundColor,
+        });
+        setVantaEffect(effect);
+      } catch (err) {
+        console.error("Vanta initialization failed:", err);
+      }
+    }, 1000); // 1s delay for "bolt" feel on first render
 
     return () => {
-      clearTimeout(timeout);
+      if (timeout) clearTimeout(timeout);
       if (effect) effect.destroy();
     };
   }

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { assets } from '@/lib/assets/assetFacade';
 import { CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import Image from 'next/image';
 
 const WorksPhilosophy = () => {
   const { t } = useLanguage();
@@ -121,14 +122,13 @@ const WorksPhilosophy = () => {
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="order-1 md:order-2 aspect-square rounded-sm overflow-hidden shadow-2xl dark:shadow-teal-900/10 border border-gray-100 dark:border-white/5"
+            className="order-1 md:order-2 aspect-square rounded-sm overflow-hidden shadow-2xl dark:shadow-teal-900/10 border border-gray-100 dark:border-white/5 relative"
           >
-            <div 
-              className="w-full h-full bg-cover bg-center" 
-              style={{ 
-                backgroundImage: `url('${assets.resolveFullUrl('post-modern-villa.jpg')}')`,
-                backgroundColor: '#1a1a1a'
-              }} 
+            <Image 
+              src={assets.resolveFullUrl('post-modern-villa.jpg')}
+              alt="Signature Architectural Style"
+              fill
+              className="object-cover transition-transform duration-[1.5s] ease-out hover:scale-110"
             />
           </motion.div>
         </div>

@@ -409,7 +409,10 @@ export default function AdminDashboard() {
 
   return (
     <div className={`min-h-screen transition-all duration-700 overflow-hidden font-sans ${theme === 'dark' ? 'bg-gray-950 text-white' : 'bg-gray-50 text-gray-900'}`}>
-      <div className={`absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]`} />
+      <div 
+        className={`absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]`} 
+        style={{ backgroundImage: `url('${assets.resolveFullUrl('noise.svg')}')` }}
+      />
       
       <nav className="relative z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl border-b border-gray-100 dark:border-white/5 px-8 py-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -757,8 +760,8 @@ export default function AdminDashboard() {
 
                   <div className="grid grid-cols-2 gap-8">
                     <div className="space-y-4">
-                      <input value={formData.title} onChange={e => setFormData(prev => ({...prev, title: e.target.value}))} placeholder="Project Name (English)" className="w-full bg-transparent border-b border-white/10 py-4 text-2xl font-light dark:text-white outline-none focus:border-teal-500" />
-                      <input value={formData.title_ar || ''} onChange={e => setFormData(prev => ({...prev, title_ar: e.target.value}))} placeholder="اسم المشروع (العربية)" dir="rtl" className="w-full bg-transparent border-b border-white/10 py-4 text-2xl font-light dark:text-white outline-none focus:border-teal-500 text-right" />
+                      <input id="project-title" name="title" value={formData.title} onChange={e => setFormData(prev => ({...prev, title: e.target.value}))} placeholder="Project Name (English)" className="w-full bg-transparent border-b border-white/10 py-4 text-2xl font-light dark:text-white outline-none focus:border-teal-500" />
+                      <input id="project-title-ar" name="title_ar" value={formData.title_ar || ''} onChange={e => setFormData(prev => ({...prev, title_ar: e.target.value}))} placeholder="اسم المشروع (العربية)" dir="rtl" className="w-full bg-transparent border-b border-white/10 py-4 text-2xl font-light dark:text-white outline-none focus:border-teal-500 text-right" />
                     </div>
                     <select value={formData.category} onChange={e => setFormData(prev => ({...prev, category: e.target.value}))} className="bg-transparent border-b border-white/10 py-4 dark:text-white outline-none h-fit self-start">
                       <option value="Residential">Residential</option>
@@ -767,24 +770,24 @@ export default function AdminDashboard() {
                   </div>
 
                   <div className="grid grid-cols-2 gap-8">
-                    <textarea value={formData.description} onChange={e => setFormData(prev => ({...prev, description: e.target.value}))} placeholder="Description (English)" className="w-full bg-white/5 rounded-2xl p-6 h-32 dark:text-white outline-none" />
-                    <textarea value={formData.description_ar || ''} onChange={e => setFormData(prev => ({...prev, description_ar: e.target.value}))} placeholder="الوصف (العربية)" dir="rtl" className="w-full bg-white/5 rounded-2xl p-6 h-32 dark:text-white outline-none text-right" />
+                    <textarea id="project-desc" name="description" value={formData.description} onChange={e => setFormData(prev => ({...prev, description: e.target.value}))} placeholder="Description (English)" className="w-full bg-white/5 rounded-2xl p-6 h-32 dark:text-white outline-none" />
+                    <textarea id="project-desc-ar" name="description_ar" value={formData.description_ar || ''} onChange={e => setFormData(prev => ({...prev, description_ar: e.target.value}))} placeholder="الوصف (العربية)" dir="rtl" className="w-full bg-white/5 rounded-2xl p-6 h-32 dark:text-white outline-none text-right" />
                   </div>
 
                   <div className="grid grid-cols-2 gap-8">
                     <div className="space-y-4">
                       <div className="space-y-2">
-                        <label className="text-[10px] uppercase font-bold text-teal-600 tracking-widest px-1">Location (EN)</label>
-                        <input value={formData.location} onChange={e => setFormData(prev => ({...prev, location: e.target.value}))} placeholder="e.g. Cairo, Egypt" className="w-full bg-transparent border-b border-white/10 py-4 dark:text-white outline-none focus:border-teal-500" />
+                        <label htmlFor="project-location" className="text-[10px] uppercase font-bold text-teal-600 tracking-widest px-1">Location (EN)</label>
+                        <input id="project-location" name="location" value={formData.location} onChange={e => setFormData(prev => ({...prev, location: e.target.value}))} placeholder="e.g. Cairo, Egypt" className="w-full bg-transparent border-b border-white/10 py-4 dark:text-white outline-none focus:border-teal-500" />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] uppercase font-bold text-teal-600 tracking-widest px-1 text-right block">الموقع (AR)</label>
-                        <input value={formData.location_ar || ''} onChange={e => setFormData(prev => ({...prev, location_ar: e.target.value}))} placeholder="مثال: القاهرة، مصر" dir="rtl" className="w-full bg-transparent border-b border-white/10 py-4 dark:text-white outline-none focus:border-teal-500 text-right" />
+                        <label htmlFor="project-location-ar" className="text-[10px] uppercase font-bold text-teal-600 tracking-widest px-1 text-right block">الموقع (AR)</label>
+                        <input id="project-location-ar" name="location_ar" value={formData.location_ar || ''} onChange={e => setFormData(prev => ({...prev, location_ar: e.target.value}))} placeholder="مثال: القاهرة، مصر" dir="rtl" className="w-full bg-transparent border-b border-white/10 py-4 dark:text-white outline-none focus:border-teal-500 text-right" />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] uppercase font-bold text-teal-600 tracking-widest px-1">Year</label>
-                      <input value={formData.year} onChange={e => setFormData(prev => ({...prev, year: e.target.value}))} placeholder="e.g. 2024" className="w-full bg-transparent border-b border-white/10 py-4 dark:text-white outline-none focus:border-teal-500" />
+                      <label htmlFor="project-year" className="text-[10px] uppercase font-bold text-teal-600 tracking-widest px-1">Year</label>
+                      <input id="project-year" name="year" value={formData.year} onChange={e => setFormData(prev => ({...prev, year: e.target.value}))} placeholder="e.g. 2024" className="w-full bg-transparent border-b border-white/10 py-4 dark:text-white outline-none focus:border-teal-500" />
                     </div>
                   </div>
 
@@ -881,6 +884,8 @@ export default function AdminDashboard() {
                     <div className="relative">
                       <Shield className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
                       <input 
+                        id="profile-name"
+                        name="profile-name"
                         type="text" 
                         value={profileName}
                         onChange={e => setProfileName(e.target.value)}
@@ -895,6 +900,8 @@ export default function AdminDashboard() {
                     <div className="relative">
                       <Key className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
                       <input 
+                        id="profile-password"
+                        name="profile-password"
                         type="password" 
                         value={profilePassword}
                         onChange={e => setProfilePassword(e.target.value)}
@@ -932,6 +939,8 @@ export default function AdminDashboard() {
                       <div className="relative">
                         <Shield className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                         <input 
+                          id="new-user-username"
+                          name="username"
                           type="text" 
                           required
                           value={newUserUsername}
@@ -947,6 +956,8 @@ export default function AdminDashboard() {
                       <div className="relative">
                         <Mail className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                         <input 
+                          id="new-user-email"
+                          name="email"
                           type="email" 
                           required
                           value={newUserEmail}
@@ -962,6 +973,8 @@ export default function AdminDashboard() {
                       <div className="relative">
                         <Key className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                         <input 
+                          id="new-user-password"
+                          name="password"
                           type="password" 
                           required
                           value={newUserPassword}

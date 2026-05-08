@@ -14,16 +14,22 @@ import { assets } from '@/lib/assets/assetFacade';
 import { supabase } from '@/lib/supabase/client';
 import { getProjects } from '@/lib/gallery/projectRepository';
 
-const Gallery = () => {
+interface GalleryProps {
+  initialProjects?: any[];
+}
+
+const Gallery = ({ initialProjects }: GalleryProps) => {
   const { t, language } = useLanguage();
   const [selectedFolder, setSelectedFolder] = useState<any | null>(null);
-  const [dbProjects, setDbProjects] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [dbProjects, setDbProjects] = useState<any[]>(initialProjects || []);
+  const [loading, setLoading] = useState(!initialProjects);
   const [activeImage, setActiveImage] = useState<string | null>(null);
   const isAr = language === 'ar';
 
   useEffect(() => {
     async function loadData() {
+      // In Demo Mode (localStorage), we always need to check for client-side changes
+      // even if the server provided initial projects.
       const projects = await getProjects();
       setDbProjects(projects);
       setLoading(false);
@@ -41,7 +47,10 @@ const Gallery = () => {
       viewport={{ once: true, amount: 0.1 }}
     >
       {/* Background Texture */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]" 
+        style={{ backgroundImage: `url('${assets.resolveFullUrl('noise.svg')}')` }}
+      />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header */}

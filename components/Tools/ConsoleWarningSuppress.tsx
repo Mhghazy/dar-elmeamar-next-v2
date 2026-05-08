@@ -11,7 +11,8 @@ export default function ConsoleWarningSuppress() {
       if (
         message.includes('THREE.Material') ||
         message.includes('vertexColors') ||
-        message.includes('non-static position')
+        message.includes('non-static position') ||
+        message.includes('Largest Contentful Paint')
       ) {
         return;
       }

@@ -16,17 +16,39 @@ import { supabase } from '@/lib/supabase/client';
 import { getProjects } from '@/lib/gallery/projectRepository';
 
 
-const GalleryShowcase = () => {
+interface GalleryShowcaseProps {
+  initialProjects?: any[];
+  initialFolders?: any[];
+}
+
+const GalleryShowcase = ({ initialProjects, initialFolders }: GalleryShowcaseProps) => {
   const { t, language } = useLanguage();
+  const isAr = language === 'ar';
   const [selectedFolder, setSelectedFolder] = useState<any | null>(null);
   const [activeImage, setActiveImage] = useState<string | null>(null);
-  const [dbProjects, setDbProjects] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [dbProjects, setDbProjects] = useState<any[]>(initialProjects || []);
+  const [dbFolders, setDbFolders] = useState<any[]>(initialFolders || []);
+  const [loading, setLoading] = useState(!initialProjects);
 
   useEffect(() => {
     async function loadData() {
+      // Always sync with latest client-side data (localStorage) on mount
       const projects = await getProjects();
       setDbProjects(projects);
+      
+      // Update folders too
+      const folders = projects.map(proj => ({
+        id: proj.id,
+        title: proj.title,
+        title_ar: proj.title_ar,
+        category: proj.category,
+        description: proj.description,
+        description_ar: proj.description_ar,
+        heroImage: proj.hero_image || proj.image_url,
+        sections: proj.sections || []
+      }));
+      setDbFolders(folders);
+      
       setLoading(false);
     }
     loadData();
@@ -37,7 +59,10 @@ const GalleryShowcase = () => {
   return (
     <section className="relative py-32 px-6 min-h-screen bg-white dark:bg-gray-950 transition-colors duration-700 overflow-hidden">
       {/* Background Texture & Grain */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]" 
+        style={{ backgroundImage: `url('${assets.resolveFullUrl('noise.svg')}')` }}
+      />
       
       <div className="max-w-7xl mx-auto relative z-10">
         <LayoutGroup>
@@ -48,29 +73,16 @@ const GalleryShowcase = () => {
               animate={{ opacity: 1 }}
               className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16 overflow-x-auto md:overflow-x-visible pb-12 md:pb-0 snap-x snap-mandatory scrollbar-hide"
             >
-              {(() => {
-                const dbFolders: any[] = dbProjects.map(proj => ({
-                  id: proj.id,
-                  title: proj.title,
-                  title_ar: proj.title_ar,
-                  category: proj.category,
-                  description: proj.description,
-                  description_ar: proj.description_ar,
-                  heroImage: proj.hero_image || proj.image_url,
-                  sections: proj.sections || []
-                }));
-                
-                return dbFolders.map((folder, index) => (
-                  <div key={folder.id} className="min-w-[85vw] md:min-w-0 snap-center">
-                    <FolderCard 
-                      folder={folder} 
-                      onClick={() => setSelectedFolder(folder)}
-                      priority={index < 3}
-                      viewCollectionLabel={ui.viewCollection}
-                    />
-                  </div>
-                ));
-              })()}
+              {dbFolders.map((folder, index) => (
+                <div key={folder.id} className="min-w-[85vw] md:min-w-0 snap-center">
+                  <FolderCard 
+                    folder={folder} 
+                    onClick={() => setSelectedFolder(folder)}
+                    priority={index < 3}
+                    viewCollectionLabel={ui.viewCollection}
+                  />
+                </div>
+              ))}
             </motion.div>
           ) : (
             <FolderShowcase 

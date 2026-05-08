@@ -38,13 +38,12 @@ export function resolvePublicImageUrl(path: string | undefined | null): string {
   // In development, Next.js serves from the root
   const basePath = process.env.NODE_ENV === 'production' ? '/dar-elmeamar-next-v2' : '';
 
-  // Prevent duplicate assets/ prefix
-  if (cleanPath.startsWith('assets/')) {
-    return `${basePath}/${cleanPath}`;
-  }
-
   // Default to prepending /assets/ for project images
-  return `${basePath}/assets/${cleanPath}`;
+  const finalPath = cleanPath.startsWith('assets/') 
+    ? `${basePath}/${cleanPath}` 
+    : `${basePath}/assets/${cleanPath}`;
+    
+  return encodeURI(finalPath);
 }
 
 /**

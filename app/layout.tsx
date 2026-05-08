@@ -4,6 +4,7 @@ import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 import ThemeProvider from "@/components/Tools/ThemeProvider";
 import ConsoleWarningSuppress from "@/components/Tools/ConsoleWarningSuppress";
+import PathRedirect from "@/components/Tools/PathRedirect";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -80,6 +81,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; script-src * 'unsafe-inline' 'unsafe-eval' data: blob:; style-src * 'unsafe-inline'; img-src * data: blob:; font-src * data:;"
+        />
         <script
           type="application/ld+json"
           suppressHydrationWarning
@@ -149,6 +154,7 @@ export default function RootLayout({
         <ThemeProvider>
           <LanguageProvider>
             <ConsoleWarningSuppress />
+            <PathRedirect />
             {children}
           </LanguageProvider>
         </ThemeProvider>

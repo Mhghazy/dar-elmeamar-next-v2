@@ -67,7 +67,7 @@ export const galleryFolders: GalleryFolder[] = [
         title: 'Project Visuals',
         images: [
           { src: 'post-modern-villa.jpg', alt: 'Post - Modern Villa Main View' },
-          { src: 'post-modern-villa-left.jpg', alt: 'Contemporary Facade Perspective' },
+          { src: 'post-modern-villa-left .jpg', alt: 'Contemporary Facade Perspective' },
           { src: 'post-modern-villa-night.jpg', alt: 'Post - Modern Villa Night View' },
           { src: 'post-modern-villa-right.jpg', alt: 'Modern Villa V3 Architectural View' },
         ]
@@ -106,9 +106,9 @@ export const galleryFolders: GalleryFolder[] = [
       {
         title: 'Entrance',
         images: [
-          { src: 'V-14-entrance-Shot-1.jpg', alt: 'Grand Entry Foyer' },
-          { src: 'V-14-entrance-Shot-2.jpg', alt: 'Interior Hallway' },
-          { src: 'V-14-entrance-Shot-3.jpg', alt: 'Luxury Lobby' },
+          { src: 'V 14 entrance Shot 1.jpg', alt: 'Grand Entry Foyer' },
+          { src: 'V 14 entrance Shot 2.jpg', alt: 'Interior Hallway' },
+          { src: 'V 14 entrance Shot 3.jpg', alt: 'Luxury Lobby' },
         ]
       },
       {
@@ -116,10 +116,10 @@ export const galleryFolders: GalleryFolder[] = [
         images: [
           { src: 'signature-estate-sales-typical.jpg', alt: 'Typical Floor Plan - 418 m2' },
           { src: 'signature-estate-sales-ground-1.jpg', alt: 'Ground Floor Plan - 307 m2' },
-          { src: '13-Ground-Right.jpg', alt: 'Ground Floor Right' },
-          { src: '14-Ground-left.jpg', alt: 'Ground Floor Left' },
-          { src: '15-Lower-Ground-RIGHT.jpg', alt: 'Lower Ground Right' },
-          { src: '16-Lower-Ground-Left.jpg', alt: 'Lower Ground Left' },
+          { src: '13- Ground  Right.jpg', alt: 'Ground Floor Right' },
+          { src: '14- Ground left.jpg', alt: 'Ground Floor Left' },
+          { src: '15-Lower Ground RIGHT.jpg', alt: 'Lower Ground Right' },
+          { src: '16-Lower Ground Left.jpg', alt: 'Lower Ground Left' },
           { src: '17-Garage.jpg', alt: 'Garage Plan' },
         ]
       }
@@ -130,31 +130,31 @@ export const galleryFolders: GalleryFolder[] = [
     title: 'Contemporary - Modern Villa - Elegance in Simplicity',
     category: 'Residential',
     description: 'This project is characterized by clean lines, geometric forms and minimalist detailing. Features a light, neutral color palette contrasted with stone cladding to maintain a clean, uncluttered aesthetic look. Strategic use of large windows and glass-railed balconies to maximize natural light and view that emphasizes open concept façade.',
-    heroImage: 'V-395-Shot-1.jpg',
+    heroImage: 'V 395 Shot 1.jpg',
     sections: [
       {
         title: 'Project Visuals',
         images: [
-          { src: 'V-395-Shot-1.jpg', alt: 'Contemporary Villa Main View' },
-          { src: 'V-395-Shot-2.jpg', alt: 'Side Perspective' },
-          { src: 'V-395-Shot-3.jpg', alt: 'Contemporary Villa Night View' },
+          { src: 'V 395 Shot 1.jpg', alt: 'Contemporary Villa Main View' },
+          { src: 'V 395 Shot 2.jpg', alt: 'Side Perspective' },
+          { src: 'V 395 Shot 3.jpg', alt: 'Contemporary Villa Night View' },
         ]
       },
       {
         title: 'Entrance',
         images: [
-          { src: 'Entrance-Shot-1.jpg', alt: 'Main Entrance Lobby' },
-          { src: 'Entrance-Shot-2.jpg', alt: 'Entrance Hallway' },
-          { src: 'Entrance-Shot-3.jpg', alt: 'Lobby Perspective' },
+          { src: 'Entrance Shot 1.jpg', alt: 'Main Entrance Lobby' },
+          { src: 'Entrance Shot 2.jpg', alt: 'Entrance Hallway' },
+          { src: 'Entrance Shot 3.jpg', alt: 'Lobby Perspective' },
         ]
       },
       {
         title: 'Sales Plan',
         images: [
-          { src: '9-typical-right.jpg', alt: 'Typical Floor Right' },
-          { src: '10-typical-left.jpg', alt: 'Typical Floor Left' },
-          { src: '11-ground-right.jpg', alt: 'Ground Floor Right' },
-          { src: '12-ground-left.jpg', alt: 'Ground Floor Left' },
+          { src: '9- typical right.jpg', alt: 'Typical Floor Right' },
+          { src: '10- typical left.jpg', alt: 'Typical Floor Left' },
+          { src: '11-ground right.jpg', alt: 'Ground Floor Right' },
+          { src: '12-ground left.jpg', alt: 'Ground Floor Left' },
           { src: '13-garage.jpg', alt: 'Garage Plan' },
         ]
       }
