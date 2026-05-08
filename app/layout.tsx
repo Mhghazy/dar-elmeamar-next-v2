@@ -18,7 +18,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://localhost:3000'),
+  metadataBase: new URL('https://mhghazy.github.io/dar-elmeamar-next-v2'),
   title: {
     default: "Dar El Meamar | Luxury Architectural Design & Construction",
     template: "%s | Dar El Meamar"
@@ -32,33 +32,40 @@ export const metadata: Metadata = {
   creator: "Dar El Meamar",
   publisher: "Dar El Meamar",
   alternates: {
-    canonical: 'http://localhost:3000',
+    canonical: 'https://mhghazy.github.io/dar-elmeamar-next-v2',
     languages: {
-      'en-US': 'http://localhost:3000/en',
-      'ar-EG': 'http://localhost:3000/ar',
+      'en-US': 'https://mhghazy.github.io/dar-elmeamar-next-v2/en',
+      'ar-EG': 'https://mhghazy.github.io/dar-elmeamar-next-v2/ar',
     },
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "http://localhost:3000",
+    url: "https://mhghazy.github.io/dar-elmeamar-next-v2",
     siteName: "Dar El Meamar",
     title: "Dar El Meamar | Global Luxury Architectural Excellence",
     description: "Premier global construction and architectural design firm specializing in luxury projects.",
     images: [
       {
-        url: "http://localhost:3000/og-image.jpg",
+        url: '/dar-elmeamar-next-v2/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: "Dar El Meamar Portfolio",
-      },
+        alt: 'Dar El-Meamar Construction Company',
+      }
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Dar El Meamar | Luxury Architectural Design & Construction",
     description: "Premier global construction and architectural design firm specializing in luxury projects.",
-    images: ["http://localhost:3000/og-image.jpg"],
+    // NOTE FOR FUTURE DEVELOPER:
+    // When migrating to Vercel, restore dynamic OG image:
+    // 1. Create app/opengraph-image.tsx with ImageResponse
+    // 2. Remove static opengraph-image.png from public/
+    // 3. Update og:image references in metadata
+    // Dynamic OG images are NOT supported on GitHub Pages
+    // but work natively on Vercel
+    images: ['/dar-elmeamar-next-v2/opengraph-image.png'],
   },
   robots: {
     index: true,
