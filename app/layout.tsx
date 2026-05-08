@@ -18,7 +18,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://mhghazy.github.io/dar-elmeamar-next-v2'),
+  metadataBase: new URL('http://localhost:3000'),
   title: {
     default: "Dar El Meamar | Luxury Architectural Design & Construction",
     template: "%s | Dar El Meamar"
@@ -32,40 +32,33 @@ export const metadata: Metadata = {
   creator: "Dar El Meamar",
   publisher: "Dar El Meamar",
   alternates: {
-    canonical: 'https://mhghazy.github.io/dar-elmeamar-next-v2',
+    canonical: 'http://localhost:3000',
     languages: {
-      'en-US': 'https://mhghazy.github.io/dar-elmeamar-next-v2/en',
-      'ar-EG': 'https://mhghazy.github.io/dar-elmeamar-next-v2/ar',
+      'en-US': 'http://localhost:3000/en',
+      'ar-EG': 'http://localhost:3000/ar',
     },
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://mhghazy.github.io/dar-elmeamar-next-v2",
+    url: "http://localhost:3000",
     siteName: "Dar El Meamar",
     title: "Dar El Meamar | Global Luxury Architectural Excellence",
     description: "Premier global construction and architectural design firm specializing in luxury projects.",
     images: [
       {
-        url: '/dar-elmeamar-next-v2/opengraph-image.png',
+        url: "http://localhost:3000/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: 'Dar El-Meamar Construction Company',
-      }
+        alt: "Dar El Meamar Portfolio",
+      },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Dar El Meamar | Luxury Architectural Design & Construction",
     description: "Premier global construction and architectural design firm specializing in luxury projects.",
-    // NOTE FOR FUTURE DEVELOPER:
-    // When migrating to Vercel, restore dynamic OG image:
-    // 1. Create app/opengraph-image.tsx with ImageResponse
-    // 2. Remove static opengraph-image.png from public/
-    // 3. Update og:image references in metadata
-    // Dynamic OG images are NOT supported on GitHub Pages
-    // but work natively on Vercel
-    images: ['/dar-elmeamar-next-v2/opengraph-image.png'],
+    images: ["http://localhost:3000/og-image.jpg"],
   },
   robots: {
     index: true,
