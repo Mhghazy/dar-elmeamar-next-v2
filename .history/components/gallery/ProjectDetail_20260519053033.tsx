@@ -10,7 +10,7 @@ import { useLanguage } from '@/context/LanguageContext';
 interface ProjectDetailProps {
   project: any;
   onBack: () => void;
-  onImageClick: (src: string) => void;
+  onImageClick: (index: number) => void;
   ui: any;
 }
 
@@ -55,9 +55,7 @@ const ProjectDetail = ({ project, onBack, onImageClick, ui }: ProjectDetailProps
 
         <motion.div
           variants={fadeUp}
-          layoutId={`folder-${project.id}`}
           className="flex items-center gap-6 mb-12"
-          onClick={() => onImageClick(project.heroImage)}
         >
           <div className="h-[1px] w-12 bg-teal-600" />
           <span className="text-teal-700 dark:text-teal-400 text-xs uppercase tracking-[0.3em] font-black">

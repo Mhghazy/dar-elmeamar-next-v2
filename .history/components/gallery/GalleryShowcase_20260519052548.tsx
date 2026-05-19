@@ -25,20 +25,13 @@ const GalleryShowcase = ({ initialProjects, initialFolders }: GalleryShowcasePro
   const [selectedFolder, setSelectedFolder] = useState<FolderType | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState<number>(-1);
   const allImages = selectedFolder
-    ? [
-      ...(selectedFolder.heroImage ? [selectedFolder.heroImage] : []),
-      ...selectedFolder.sections.flatMap((section: any) =>
-        (section.images || []).map((img: any) => img.src)
-      )
-    ]
+    ? selectedFolder.sections.flatMap((section: any) => section.images || [])
     : [];
   const handleNext = () => {
-    if (allImages.length === 0) return;
     setActiveImageIndex((prev) => (prev + 1) % allImages.length);
   };
 
   const handlePrev = () => {
-    if (allImages.length === 0) return;
     setActiveImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
   };
 

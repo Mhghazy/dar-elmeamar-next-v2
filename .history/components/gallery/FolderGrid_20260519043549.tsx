@@ -19,14 +19,14 @@ const FolderGrid = ({ folders, onSelect, ui }: FolderGridProps) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       // the grid layout is responsive, switching from a horizontal scroll on mobile to a multi-column grid on larger screens. The snap-x and snap-mandatory classes ensure that each folder card snaps into place when scrolling on mobile, providing a smooth and intuitive navigation experience.
-      className="flex md:grid  md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16 overflow-x-auto md:overflow-x-visible pb-12 md:pb-0 snap-x snap-mandatory scrollbar-hide"
+      className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16 overflow-x-auto md:overflow-x-visible pb-12 md:pb-0 snap-x snap-mandatory scrollbar-hide"
     >
       {folders.map((folder, index) => (
         <div key={folder.id} className="min-w-[85vw] md:min-w-0 snap-center">
           <FolderCard
             folder={folder}
             onClick={() => onSelect(folder)}
-            priority={index < 3} //  (LCP optimization)
+            priority={index < 3} // (LCP optimization)
             ui={ui}
           />
         </div>
@@ -35,7 +35,7 @@ const FolderGrid = ({ folders, onSelect, ui }: FolderGridProps) => {
   );
 };
 
-// --- Folder Card Component ---
+// --- ---
 const FolderCard = ({ folder, onClick, priority, ui }: any) => {
   const { language } = useLanguage();
   const isAr = language === 'ar';
@@ -71,7 +71,7 @@ const FolderCard = ({ folder, onClick, priority, ui }: any) => {
             )}
           </motion.div>
 
-          {/* Gradient Overlay */}
+          {/* */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-700" />
 
           <div className="absolute top-6 left-6">
@@ -83,7 +83,7 @@ const FolderCard = ({ folder, onClick, priority, ui }: any) => {
           </div>
         </div>
 
-        {/* Folder Details */}
+        {/*  */}
         <div className="p-10">
           <motion.h3
             layoutId={`title-${folder.id}`}

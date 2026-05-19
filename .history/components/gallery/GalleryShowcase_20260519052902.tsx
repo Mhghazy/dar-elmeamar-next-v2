@@ -26,19 +26,17 @@ const GalleryShowcase = ({ initialProjects, initialFolders }: GalleryShowcasePro
   const [activeImageIndex, setActiveImageIndex] = useState<number>(-1);
   const allImages = selectedFolder
     ? [
-      ...(selectedFolder.heroImage ? [selectedFolder.heroImage] : []),
+      ...(project.heroImage ? [project.heroImage] : []), // إضافة الهيرو أولاً إذا وجد
       ...selectedFolder.sections.flatMap((section: any) =>
-        (section.images || []).map((img: any) => img.src)
+        (section.images || []).map((img: any) => img.src) // التأكد من استخراج الـ src فقط
       )
     ]
     : [];
   const handleNext = () => {
-    if (allImages.length === 0) return;
     setActiveImageIndex((prev) => (prev + 1) % allImages.length);
   };
 
   const handlePrev = () => {
-    if (allImages.length === 0) return;
     setActiveImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
   };
 

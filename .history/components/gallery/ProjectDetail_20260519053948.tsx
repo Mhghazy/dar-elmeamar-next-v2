@@ -74,7 +74,7 @@ const ProjectDetail = ({ project, onBack, onImageClick, ui }: ProjectDetailProps
       <motion.div
         layoutId={`folder-${project.id}`}
         className="relative w-full aspect-[21/9] rounded-3xl overflow-hidden mb-40 group cursor-zoom-in bg-gray-100 dark:bg-gray-900 shadow-2xl border border-white/10"
-        onClick={() => onImageClick(project.heroImage)}
+        onClick={() => onImageClick(img.src)}
       >
         <motion.div className="absolute inset-0" whileHover={{ scale: 1.05 }} transition={{ duration: 1.5 }}>
           {project.heroImage && (

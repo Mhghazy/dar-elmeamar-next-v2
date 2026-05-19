@@ -10,7 +10,7 @@ import { useLanguage } from '@/context/LanguageContext';
 interface ProjectDetailProps {
   project: any;
   onBack: () => void;
-  onImageClick: (src: string) => void;
+  onImageClick: (index: number) => void;
   ui: any;
 }
 

@@ -77,7 +77,6 @@ const Lightbox = ({ images, currentIndex, onClose, onNext, onPrev }: LightboxPro
             fill
             className="object-contain"
             quality={100}
-            unoptimized
           />
         </motion.div>
       </motion.div>

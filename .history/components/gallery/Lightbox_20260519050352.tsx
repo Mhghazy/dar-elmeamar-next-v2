@@ -11,8 +11,6 @@ interface LightboxProps {
   onNext: () => void;
   onPrev: () => void;
 }
-
-
 const Lightbox = ({ images, currentIndex, onClose, onNext, onPrev }: LightboxProps) => {
   if (currentIndex === -1) return null;
 
@@ -77,7 +75,6 @@ const Lightbox = ({ images, currentIndex, onClose, onNext, onPrev }: LightboxPro
             fill
             className="object-contain"
             quality={100}
-            unoptimized
           />
         </motion.div>
       </motion.div>

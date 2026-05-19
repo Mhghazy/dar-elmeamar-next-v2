@@ -23,24 +23,7 @@ const GalleryShowcase = ({ initialProjects, initialFolders }: GalleryShowcasePro
   const { folders, loading } = useGalleryData(initialProjects, initialFolders);
 
   const [selectedFolder, setSelectedFolder] = useState<FolderType | null>(null);
-  const [activeImageIndex, setActiveImageIndex] = useState<number>(-1);
-  const allImages = selectedFolder
-    ? [
-      ...(selectedFolder.heroImage ? [selectedFolder.heroImage] : []),
-      ...selectedFolder.sections.flatMap((section: any) =>
-        (section.images || []).map((img: any) => img.src)
-      )
-    ]
-    : [];
-  const handleNext = () => {
-    if (allImages.length === 0) return;
-    setActiveImageIndex((prev) => (prev + 1) % allImages.length);
-  };
-
-  const handlePrev = () => {
-    if (allImages.length === 0) return;
-    setActiveImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
-  };
+  const [activeImage, setActiveImage] = useState<string | null>(null);
 
   // if we're still loading data and we don't have any folders to show, we display a loading spinner
   if (loading && !folders.length) {
@@ -70,13 +53,7 @@ const GalleryShowcase = ({ initialProjects, initialFolders }: GalleryShowcasePro
                 key="detail"
                 project={selectedFolder}
                 onBack={() => setSelectedFolder(null)}
-                onImageClick={(src: string) => {
-                  //  when a user clicks on an image in the project detail view, we need to determine the index of that image within the allImages array to properly set the active image in the lightbox. By using the indexOf method, we can find the position of the clicked image (src) in the allImages array and update the activeImageIndex state accordingly. This allows us to open the lightbox with the correct image displayed, providing a seamless user experience when navigating through project images.
-                  const index = allImages.indexOf(src);
-                  if (index !== -1) {
-                    setActiveImageIndex(index);
-                  }
-                }}
+                onImageClick={setActiveImage}
                 ui={t.galleryUi}
               />
             )}
@@ -85,11 +62,9 @@ const GalleryShowcase = ({ initialProjects, initialFolders }: GalleryShowcasePro
       </div>
 
       <Lightbox
-        images={allImages}
-        currentIndex={activeImageIndex}
-        onClose={() => setActiveImageIndex(-1)}
-        onNext={() => setActiveImageIndex((prev) => (prev + 1) % allImages.length)}
-        onPrev={() => setActiveImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length)}
+        image={activeImage}
+        onClose={() => setActiveImage(null)}
+        altText={t.galleryUi.fullSizeAlt}
       />
     </section>
   );

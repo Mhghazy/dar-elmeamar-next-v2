@@ -19,7 +19,7 @@ const FolderGrid = ({ folders, onSelect, ui }: FolderGridProps) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       // the grid layout is responsive, switching from a horizontal scroll on mobile to a multi-column grid on larger screens. The snap-x and snap-mandatory classes ensure that each folder card snaps into place when scrolling on mobile, providing a smooth and intuitive navigation experience.
-      className="flex md:grid  md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16 overflow-x-auto md:overflow-x-visible pb-12 md:pb-0 snap-x snap-mandatory scrollbar-hide"
+      className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16 overflow-x-auto md:overflow-x-visible pb-12 md:pb-0 snap-x snap-mandatory scrollbar-hide"
     >
       {folders.map((folder, index) => (
         <div key={folder.id} className="min-w-[85vw] md:min-w-0 snap-center">
@@ -65,6 +65,7 @@ const FolderCard = ({ folder, onClick, priority, ui }: any) => {
                 priority={priority}
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
+
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-400">No Image</div>

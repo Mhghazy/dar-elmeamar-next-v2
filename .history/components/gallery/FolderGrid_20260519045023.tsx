@@ -65,6 +65,7 @@ const FolderCard = ({ folder, onClick, priority, ui }: any) => {
                 priority={priority}
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
+
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-400">No Image</div>

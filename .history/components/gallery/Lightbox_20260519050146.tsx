@@ -11,8 +11,6 @@ interface LightboxProps {
   onNext: () => void;
   onPrev: () => void;
 }
-
-
 const Lightbox = ({ images, currentIndex, onClose, onNext, onPrev }: LightboxProps) => {
   if (currentIndex === -1) return null;
 
@@ -24,12 +22,12 @@ const Lightbox = ({ images, currentIndex, onClose, onNext, onPrev }: LightboxPro
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        // the lightbox is designed to cover the entire viewport with a dark, semi-transparent background that blurs the content behind it. This design choice helps to focus the user's attention on the image being viewed while still providing a sense of context by allowing a glimpse of the underlying page. The use of backdrop-blur-sm adds a subtle blur effect to the background, enhancing the visual appeal and ensuring that the lightbox stands out as a distinct layer above the main content.
+        // زد إندكس عالي جداً ليكون فوق الناف بار
         className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 backdrop-blur-sm"
-        // we attach the onClose handler to the entire lightbox container, allowing users to click anywhere outside the image to close the lightbox. This provides an intuitive way to exit the lightbox without having to specifically target a close button, enhancing the overall user experience.
+        // النقر على الخلفية يغلق الصورة
         onClick={onClose}
       >
-        {/* Button */}
+        {/* زر الإغلاق - نستخدم e.stopPropagation لمنع انتقال النقر للخلفية */}
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -40,7 +38,7 @@ const Lightbox = ({ images, currentIndex, onClose, onNext, onPrev }: LightboxPro
           <X size={32} />
         </button>
 
-        {/* Navigation Buttons */}
+        {/* أزرار التنقل */}
         {images.length > 1 && (
           <>
             <button
@@ -64,12 +62,12 @@ const Lightbox = ({ images, currentIndex, onClose, onNext, onPrev }: LightboxPro
           </>
         )}
 
-        {/* Image Container */}
+        {/* حاوية الصورة */}
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           className="relative w-[90vw] h-[80vh] flex items-center justify-center"
-          onClick={(e) => e.stopPropagation()} // prevent closing when clicking on the image itself
+          onClick={(e) => e.stopPropagation()} // منع الإغلاق عند النقر على الصورة نفسها
         >
           <Image
             src={assets.resolveUrl(currentImage)}
@@ -77,7 +75,6 @@ const Lightbox = ({ images, currentIndex, onClose, onNext, onPrev }: LightboxPro
             fill
             className="object-contain"
             quality={100}
-            unoptimized
           />
         </motion.div>
       </motion.div>

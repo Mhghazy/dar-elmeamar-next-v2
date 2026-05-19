@@ -33,12 +33,10 @@ const GalleryShowcase = ({ initialProjects, initialFolders }: GalleryShowcasePro
     ]
     : [];
   const handleNext = () => {
-    if (allImages.length === 0) return;
     setActiveImageIndex((prev) => (prev + 1) % allImages.length);
   };
 
   const handlePrev = () => {
-    if (allImages.length === 0) return;
     setActiveImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
   };
 
