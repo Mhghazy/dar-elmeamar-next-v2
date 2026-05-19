@@ -30,7 +30,7 @@ export default function GalleryPage() {
 
 async function GalleryContent() {
   const projects = await getProjects();
-
+  
   const initialFolders = projects.map(proj => ({
     id: proj.id,
     title: proj.title,

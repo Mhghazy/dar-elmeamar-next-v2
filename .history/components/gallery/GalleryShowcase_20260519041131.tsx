@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { AnimatePresence, LayoutGroup } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
-import { useGalleryData, FolderType } from './CustomHook/useGalleryData';
+import { useGalleryData, FolderType } from './Custom Hook/useGalleryData';
 
 // Components
 
@@ -17,7 +17,7 @@ interface GalleryShowcaseProps {
   initialFolders?: FolderType[];
 }
 
-const GalleryShowcase = ({ initialProjects, initialFolders }: GalleryShowcaseProps) => {
+const GalleryShowcase = ({ initialProjects, initialFolders }: { initialProjects?: any[]; initialFolders?: FolderType[] }) => {
   const { t } = useLanguage();
   // this hook abstracts away the logic of fetching and managing gallery data, making the component cleaner and more focused on presentation
   const { folders, loading } = useGalleryData(initialProjects, initialFolders);

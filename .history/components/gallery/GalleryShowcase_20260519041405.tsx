@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { AnimatePresence, LayoutGroup } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
-import { useGalleryData, FolderType } from './CustomHook/useGalleryData';
+import { useGalleryData, FolderType } from './Custom Hook/useGalleryData';
 
 // Components
 

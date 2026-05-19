@@ -42,5 +42,5 @@ async function GalleryContent() {
     sections: proj.sections || []
   }));
 
-  return <GalleryShowcase initialProjects={projects} initialFolders={initialFolders} />;
+  return <GalleryShowcase initialProjects={projects} />;
 }
