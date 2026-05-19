@@ -22,10 +22,12 @@ const Gallery = ({ initialProjects }: GalleryProps) => {
   const [activeImage, setActiveImage] = useState<string | null>(null);
   const isAr = language === 'ar';
 
+  const [mounted, setMounted] = useState(false);
   //  when a folder is selected or an image is active, we set the body's overflow to 'hidden' to prevent background scrolling. This ensures that the user can focus on the content of the selected folder or the lightbox without any distractions from the background content. When the user goes back to the main grid (i.e., deselects the folder) or closes the lightbox, we reset the overflow to 'unset', allowing normal scrolling behavior again.
   const galleryUi = t.galleryUi as Record<string, string>;
   //  This useEffect hook listens for changes to the selectedFolder and activeImage state variables. Whenever either of these variables changes, it checks if there is a selected folder or an active image. If there is, it sets the document body's overflow style to 'hidden', which prevents the background content from scrolling. If there isn't a selected folder or active image (i.e., the user has closed the modal or lightbox), it resets the overflow style to 'unset', allowing normal scrolling behavior again. The cleanup function ensures that if the component unmounts while a folder is selected or an image is active, the overflow style will be reset to 'unset' to prevent any potential issues with lingering styles.
   useEffect(() => {
+    setMounted(true);
     if (selectedFolder || activeImage) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -136,7 +138,7 @@ const Gallery = ({ initialProjects }: GalleryProps) => {
 
         {/* Modal Logic */}
         <AnimatePresence>
-          {selectedFolder && (
+          {selectedFolder && mounted && createPortal(
             <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 md:p-12">
               <motion.div
                 initial={{ opacity: 0 }}
@@ -203,6 +205,7 @@ const Gallery = ({ initialProjects }: GalleryProps) => {
                 </div>
               </motion.div>
             </div>
+          document.body
           )}
         </AnimatePresence>
 

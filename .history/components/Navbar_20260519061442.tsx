@@ -53,7 +53,8 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-30 transition-all duration-300`}
+      className={`fixed top-0 w-full z-[50] transition-transform duration-300 ${isModalOpen ? "-translate-y-full" : "translate-y-0"
+        }`}
       style={{
         backgroundColor: isDark
           ? isScrolled

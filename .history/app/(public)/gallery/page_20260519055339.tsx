@@ -1,9 +1,8 @@
-
+import GalleryHero from '@/components/gallery/GalleryHero';
 import GalleryShowcase from '@/components/gallery/galleryPg/GalleryShowcase';
 import { Metadata } from 'next';
 import { getProjects } from '@/lib/gallery/projectRepository';
 import { Suspense } from 'react';
-import GalleryHero from '@/components/gallery/galleryPg/GalleryHero';
 
 export const metadata: Metadata = {
   title: 'Gallery | Dar El Meamar',

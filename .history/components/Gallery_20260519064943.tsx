@@ -47,7 +47,16 @@ const Gallery = ({ initialProjects }: GalleryProps) => {
     }
     loadData();
 
-  }, []);
+    if (selectedFolder || activeImage) {
+      document.body.style.overflow = 'hidden';
+      // أضف كلاس للـ body لإخفاء الـ Navbar
+      document.documentElement.classList.add('modal-open');
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.classList.remove('modal-open');
+    }
+    return () => document.documentElement.classList.remove('modal-open');
+  }, [selectedFolder, activeImage])
 
   return (
     <motion.section

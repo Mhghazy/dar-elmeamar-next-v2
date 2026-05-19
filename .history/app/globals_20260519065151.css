@@ -14,12 +14,11 @@
   }
 }
 
-body:has([class*="z-[999]"]) nav,
-body:has([class*="z-[1000]"]) nav {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  transition: all 0.2s ease-in-out;
+/* عندما يكون المودال مفتوحاً، اجعل الـ Navbar يختفي أو ينزل خلف المودال */
+.modal-open nav {
+  transform: translateY(-100%); /* يخفي الناف بار برفعه للأعلى */
+  transition: transform 0.3s ease;
+  pointer-events: none;
 }
 
 body {

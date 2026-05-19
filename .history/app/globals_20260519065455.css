@@ -14,6 +14,7 @@
   }
 }
 
+body:has([class*="z-[999]"]),
 body:has([class*="z-[999]"]) nav,
 body:has([class*="z-[1000]"]) nav {
   opacity: 0 !important;

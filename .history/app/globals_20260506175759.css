@@ -14,14 +14,6 @@
   }
 }
 
-body:has([class*="z-[999]"]) nav,
-body:has([class*="z-[1000]"]) nav {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  transition: all 0.2s ease-in-out;
-}
-
 body {
   color: var(--foreground);
   background: var(--background);

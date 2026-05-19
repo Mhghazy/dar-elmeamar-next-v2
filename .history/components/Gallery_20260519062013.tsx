@@ -21,6 +21,8 @@ const Gallery = ({ initialProjects }: GalleryProps) => {
   const [loading, setLoading] = useState(!initialProjects);
   const [activeImage, setActiveImage] = useState<string | null>(null);
   const isAr = language === 'ar';
+  // UI text mapping for project categories, e.g. "Residential" => "سكني", "Commercial" => "تجاري", etc.
+
 
   //  when a folder is selected or an image is active, we set the body's overflow to 'hidden' to prevent background scrolling. This ensures that the user can focus on the content of the selected folder or the lightbox without any distractions from the background content. When the user goes back to the main grid (i.e., deselects the folder) or closes the lightbox, we reset the overflow to 'unset', allowing normal scrolling behavior again.
   const galleryUi = t.galleryUi as Record<string, string>;
@@ -113,7 +115,7 @@ const Gallery = ({ initialProjects }: GalleryProps) => {
                     <div className="absolute top-6 left-6">
                       <div className="px-4 py-1.5 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full">
                         <span className="text-[10px] text-white uppercase tracking-[0.2em] font-bold">
-                          {/* Category */}
+                          {/* */}
                           {galleryUi[folder.category.toLowerCase()] || folder.category}
                         </span>
                       </div>
@@ -137,7 +139,7 @@ const Gallery = ({ initialProjects }: GalleryProps) => {
         {/* Modal Logic */}
         <AnimatePresence>
           {selectedFolder && (
-            <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 md:p-12">
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -213,7 +215,7 @@ const Gallery = ({ initialProjects }: GalleryProps) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[1000] bg-black/95 flex items-center justify-center p-4"
+              className="fixed inset-0 z-[200] bg-black/95 flex items-center justify-center p-4"
               onClick={() => setActiveImage(null)}
             >
               <button className="absolute top-10 right-10 text-white hover:rotate-90 transition-transform">

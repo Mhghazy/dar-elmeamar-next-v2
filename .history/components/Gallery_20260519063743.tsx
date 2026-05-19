@@ -21,6 +21,8 @@ const Gallery = ({ initialProjects }: GalleryProps) => {
   const [loading, setLoading] = useState(!initialProjects);
   const [activeImage, setActiveImage] = useState<string | null>(null);
   const isAr = language === 'ar';
+  // UI text mapping for project categories, e.g. "Residential" => "سكني", "Commercial" => "تجاري", etc.
+
 
   //  when a folder is selected or an image is active, we set the body's overflow to 'hidden' to prevent background scrolling. This ensures that the user can focus on the content of the selected folder or the lightbox without any distractions from the background content. When the user goes back to the main grid (i.e., deselects the folder) or closes the lightbox, we reset the overflow to 'unset', allowing normal scrolling behavior again.
   const galleryUi = t.galleryUi as Record<string, string>;

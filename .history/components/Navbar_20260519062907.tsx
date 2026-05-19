@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'react-feather';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -17,7 +17,7 @@ import {
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  // background opacity (0..1) controlled by scroll position
+
   const [bgOpacity, setBgOpacity] = useState(0.95);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t } = useLanguage();
@@ -53,7 +53,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-30 transition-all duration-300`}
+      className={`fixed top-0 w-full z-[50] transition-transform duration-300 `}
       style={{
         backgroundColor: isDark
           ? isScrolled

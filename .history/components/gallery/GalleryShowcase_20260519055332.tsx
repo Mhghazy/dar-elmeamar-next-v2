@@ -8,7 +8,7 @@ import { useGalleryData, FolderType } from './CustomHook/useGalleryData';
 // Components
 
 import ProjectDetail from './ProjectDetail';
-import FolderGrid from './FolderGrid';
+import FolderGrid from './galleryPg/FolderGrid';
 import Lightbox from './Lightbox';
 
 // Types and Interfaces
